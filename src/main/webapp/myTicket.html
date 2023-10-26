@@ -1091,5 +1091,36 @@
     // 初始化显示第一页
     showPagee(currentPageeIndex);
   </script>
+  
+  <script>
+	const listTb2 = document.querySelector('#listTb2');
+	fetch('orders')
+		.then(resp => resp.json())
+		.then(orderArr => {
+			for (let order of orderArr) {
+				let compare = 0;
+				for (let orderDetail of order.orderlists) {
+					if (order.ordType == 2 && compare != order.orderID){
+					listTb2.innerHTML += `
+						<tr class="table_row1">
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actName}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.discountPrice}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.actQuantity}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListTime}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">退貨</td>
+							<td class="column-7" style="text-align: center; padding: 0.1%;">
+								無法評論
+							</td>
+
+						</tr>
+					`;
+					}
+					 compare = order.orderID;
+				}
+			}
+		});
+</script>
 	</body>
 </html>
