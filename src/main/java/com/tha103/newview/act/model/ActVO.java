@@ -109,7 +109,7 @@ public class ActVO {
 	@Expose
 	@OneToMany(mappedBy = "actVO", cascade=CascadeType.ALL)
 	private Set<MyLikeVO> myLikeVOs;
-	@Expose
+//	@Expose
 	@OneToMany(mappedBy = "actVO", cascade=CascadeType.ALL)
 	private Set<CartActVO> cartActVOs;
 	

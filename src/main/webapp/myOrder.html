@@ -420,16 +420,18 @@ button:hover {
 									<div class="wrap-table-shopping-cart">
 										<table id="listTb" class="table-shopping-cart">
 											<tr class="table_head">
-												<th class="column-2" style="text-align: center;">活動圖</th>
+												<th class="column-2" style="text-align: center;">訂單</th>
 												<th class="column-2" style="text-align: center;">訂單編號</th>
 												<th class="column-2" style="text-align: center;">活動名稱</th>
 												<th class="column-2" style="text-align: center;">金額</th>
+												<th class="column-2" style="text-align: center;">折扣金額</th>
+												<th class="column-2" style="text-align: center;">折後金額</th>
 												<th class="column-2" style="text-align: center;">數量</th>
 												<th class="column-2" style="text-align: center;">使用優惠</th>
 												<th class="column-2" style="text-align: center;">交易日期</th>
 												<th class="column-2" style="text-align: center;">訂單狀態</th>
 												<th class="column-2" style="text-align: center;">我的票券</th>
-												<th class="column-2" style="text-align: center;">取消訂單</th>
+												<th class="column-2" style="text-align: center;">顯示明細</th>
 											</tr>
 
 											<!-- 											<tr class="table_row1"> -->
@@ -571,7 +573,8 @@ button:hover {
 												<th class="column-2" style="text-align: center;">訂單編號</th>
 												<th class="column-2" style="text-align: center;">明細編號</th>
 												<th class="column-2" style="text-align: center;">活動編號</th>
-												<th class="column-2" style="text-align: center;">金額</th>
+
+												<th class="column-2" style="text-align: center;">折後金額</th>
 												<th class="column-2" style="text-align: center;">數量</th>
 
 												<th class="column-2" style="text-align: center;">評論日期</th>
@@ -957,6 +960,8 @@ button:hover {
 							</div></td>
 							<td class="column-2 toggleButton${order.orderID}" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actName}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.ordTotal}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.discount}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.discountPrice}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.actQuantity}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
@@ -967,38 +972,48 @@ button:hover {
 								<button type="button" class="btn btn-dark goticket toggleButton${order.orderID}"">票券</button>
 							</td>
 							<td class="column-7" style="text-align: center; ">
-								<button type="button" class="btn btn-dark show-form-button">取消</button>
+								<button type="button" class="btn btn-dark show-form-button">顯示</button>
 							</td>
 						</tr>
-						<tr class="hidden0 content${order.orderID}">
-						<td class="column-2" style="text-align: center; padding: 0.1%;">明細</td>
-						<td class="column-2" style="text-align: center; padding: 0.1%;">活動名稱</td>
-						<td class="column-2" style="text-align: center; padding: 0.1%;">活動價格</td>
-						<td class="column-2" style="text-align: center; padding: 0.1%;">${order.actQuantity}</td>
-						<td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
-						<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListTime}</td>
-
-						<td class="column-2" style="text-align: center; padding: 0.1%;">未使用</td>
-						<td class="column-7" style="text-align: center; padding: 0.1%;">
-							<button type="button" class="btn btn-dark goticket">票券</button>
-						</td>
-						<td class="column-7" style="text-align: center; ">
-							<button type="button" class="btn btn-dark show-form-button">取消</button>
-						</td>
-					</tr>
+						
+						<tr class="hidden0 content${order.orderID} table_head">
+							<td class="column-2" style="text-align: center; padding: 0.1%;">明細</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">訂單編號</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">明細編號</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">活動價格</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">使用優惠</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">座位</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">座號</td>
+	
+							<td class="column-2" style="text-align: center; padding: 0.1%;">狀態</td>
+							<td class="column-7" style="text-align: center; padding: 0.1%;">單張票</td>
+							<td class="column-7" style="text-align: center; ">取消/評論</td>
+						</tr>
 					`;
 					}
 					compare = order.orderID;
 					if (order.ordType == 0){
+						let rowIndex = orderDetail.seatRows; // 第2排
+						let seatIndex = orderDetail.seatColumns;// 第8列
+						let actScope = orderDetail.act.actScope;// actScope 1或2或3
+						if (actScope === 1) {
+							totalColumns = 30;
+						} else if (actScope === 2) {
+							totalColumns = 20;
+						} else if (actScope === 3) {
+							totalColumns = 10;
+						}
+						let seatNumber = (rowIndex - 1) * totalColumns + seatIndex;
+					if(orderDetail.vacancy == 0){
 					listTb.innerHTML += `
 						<tr class="hidden0 content${order.orderID}">
+							<td class="column-2" style="text-align: center; padding: 0.1%;"></td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actName}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actPrice}</td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.actQuantity}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListTime}</td>
-
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.seatRows}排${orderDetail.seatColumns}列</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${seatNumber}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">未使用</td>
 							<td class="column-7" style="text-align: center; padding: 0.1%;">
 								<button type="button" class="btn btn-dark goticket">票券</button>
@@ -1008,6 +1023,43 @@ button:hover {
 							</td>
 						</tr>
 					`;}
+					if(orderDetail.vacancy == 1){
+						listTb.innerHTML += `
+							<tr class="hidden0 content${order.orderID}">
+								<td class="column-2" style="text-align: center; padding: 0.1%;"></td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actPrice}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.seatRows}排${orderDetail.seatColumns}列</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${seatNumber}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">已使用</td>
+								<td class="column-7" style="text-align: center; padding: 0.1%;">
+									<button type="button" class="btn btn-dark goticket">票券</button>
+								</td>
+								<td class="column-7" style="text-align: center; ">
+									<button type="button" class="btn btn-dark goticket">評論</button></td>
+							</tr>
+						`;}
+					if(orderDetail.vacancy == 2){
+						listTb.innerHTML += `
+							<tr class="hidden0 content${order.orderID}">
+								<td class="column-2" style="text-align: center; padding: 0.1%;"></td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actPrice}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.seatRows}排${orderDetail.seatColumns}列</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${seatNumber}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">已取消</td>
+								<td class="column-7" style="text-align: center; padding: 0.1%;">
+									<button type="button" class="btn btn-dark goticket">票券</button>
+								</td>
+								<td class="column-7" style="text-align: center; ">已取消</td>
+							</tr>
+						`;}
+					}
+
 				}
 			}
 		});
@@ -1072,19 +1124,5 @@ button:hover {
 			}
 		});
 </script>
-<!-- <script> -->
-//     // 當按鈕被點擊時切換顯示內容的狀態
-//     for (var i = 0; i < 99; i++) {
-// document.getElementByClassName("toggleButton[i]").addEventListener("click", function() {
-//     var content = document.getElementByClassName("content[i]");
-//     if (content.style.display === "none" || content.style.display === "") {
-//         content.style.display = "block";
-//     } else {
-//         content.style.display = "none";
-//     }
-// });
-//     }
-<!-- </script> -->
-
 
 </html>

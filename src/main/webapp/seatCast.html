@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<script>
+
+		//座位號 轉行、列
+		let seatNumber = 1;
+		let actScope = 1; // actScope 1或2或3
+		if (actScope == 1) {
+			totalColumns = 30;
+		}
+		else if (actScope == 2) {
+			totalColumns = 20;
+		}
+		else if (actScope == 3) {
+			totalColumns = 10;
+		}
+
+		// 计算行数
+		let rowIndex = Math.ceil(seatNumber / totalColumns);
+
+		// 计算列数
+		let seatIndex = seatNumber % totalColumns;
+
+		// 如果 seatIndex 为 0，则将其设置为总列数
+		if (seatIndex === 0) {
+			seatIndex = totalColumns;
+		}
+
+		console.log("actScope=" + actScope + "，座位号" + seatNumber + "在第 " + rowIndex + " 排，第 " + seatIndex + " 列。");
+
+		//行、列 轉 座位號
+		rowIndex = 1; // 第2排
+		seatIndex = 1; // 第8列
+		actScope = 1; // actScope 1或2或3
+
+		if (actScope === 1) {
+			totalColumns = 30;
+		} else if (actScope === 2) {
+			totalColumns = 20;
+		} else if (actScope === 3) {
+			totalColumns = 10;
+		}
+
+		// 计算座位号
+		seatNumber = (rowIndex - 1) * totalColumns + seatIndex;
+
+		console.log("actScope=" + actScope + "，第" + rowIndex + "排，第" + seatIndex + "列的座位号是 " + seatNumber);
+
+	</script>
+</body>
+
+</html>
