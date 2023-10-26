@@ -29,6 +29,13 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
 <!--===============================================================================================-->
+<style>.star {
+	color: gold;
+	cursor: pointer;
+	font-size: 24px;
+  }
+  </style>
+
 <style>
 	.table-shopping-cart .column-5 {
 	  width: 172px;
@@ -455,24 +462,23 @@
 
 						<div class="form-group" >
 							<label for="TextInput">活動</label>
-							<input type="text" id="TextInput" class="form-control" placeholder="@actID" readonly="readonly">
+							<input type="text" id="TextInput" class="form-control" placeholder="@actName" readonly="readonly">
+						</div>
+						
+						<div class="form-group" >
+							<label for="TextInput">明細編號</label>
+							<input type="text" id="TextInput" class="form-control" placeholder="@orderListID" readonly="readonly">
 						</div>
 
-						<div class="form-group ">
-							<label for="TextInput">活動類別</label>
-                            <select class="custom-select p-l-28 " required>
-                              <option value="">select category</option>
-                              <option value="1">綜合討論All(換票、揪團)</option>
-                              <option value="2">音樂表演Music</option>
-                              <option value="3">戲劇表演Drama</option>
-                              <option value="4">舞蹈表演Dance</option>
-                              <option value="5">脫口秀Talk Show</option>
-                              <option value="6">演唱會Singing Concert</option>
-                              <option value="7">講座Lecture</option>
-                            </select>
-                        	  <div class="invalid-feedback">未選擇類別</div>
-                        </div>
-
+						<p id="ratingResult" style="margin-bottom:-5px;">我的評分：5星</p>
+						<p  class="rating">
+							<span class="star" onclick="rate(1)">&#9733;</span>
+							<span class="star" onclick="rate(2)">&#9733;</span>
+							<span class="star" onclick="rate(3)">&#9733;</span>
+							<span class="star" onclick="rate(4)">&#9733;</span>
+							<span class="star" onclick="rate(5)">&#9733;</span>
+						  </p>
+						  
 						<div class="form-group ">
 							<label for="TextInput">評論內容</label>
 							<textarea id="TextInput" class="form-control stext-111 cl2 plh3 size-120 p-lr-10 p-tb-25" name="msg" placeholder="text your content" required></textarea>
@@ -746,6 +752,32 @@
 	<script src="js/map-custom.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+	<script>
+		let userRating = 5;
+		
+		function rate(stars) {
+		  userRating = stars;
+		  updateRating();
+		  highlightStars(stars);
+		}
+		
+		function updateRating() {
+		  const ratingResult = document.getElementById("ratingResult");
+		  ratingResult.textContent = "我的評分：" + userRating + "星";
+		}
+		
+		function highlightStars(stars) {
+		  const allStars = document.querySelectorAll(".star");
+		  for (let i = 0; i < allStars.length; i++) {
+			if (i < stars) {
+			  allStars[i].style.color = "gold"; // 显示为黄色
+			} else {
+			  allStars[i].style.color = "gray"; // 显示为灰色
+			}
+		  }
+		}
+		
+			  </script>
 
 </body>
 </html>
