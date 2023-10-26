@@ -2,6 +2,7 @@ package com.tha103.newview.orders.controller;
 
 import java.io.IOException;
 
+import javax.json.JsonObject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,5 +41,21 @@ public class OrdersController extends HttpServlet {
 		resp.setContentType("application/json; charset=utf-8");
 		resp.getWriter().write(gson.toJson(list));
 		HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
+	}
+	@Override
+	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		Integer userID = 0;
+		Integer uid = (Integer) req.getSession().getAttribute("userID");
+		if (uid != null) {
+			userID = uid;
+		} else {
+			userID = 1;
+		}
+		var actID = Integer.parseInt(req.getParameter("actID"));
+		var result = service.removeOrders(orderID, userID);
+
+		JsonObject respBody = new JsonObject();
+		respBody.addProperty("result", result);
+		resp.getWriter().write(respBody.toString());
 	}
 }

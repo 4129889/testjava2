@@ -567,18 +567,18 @@ button:hover {
 							<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
 								<div class="m-l-25 m-r--38 m-lr-0-xl">
 									<div class="wrap-table-shopping-cart">
-										<table class="table-shopping-cart">
+										<table id=listTb2 class="table-shopping-cart">
 											<tr class="table_head">
 
 												<th class="column-2" style="text-align: center;">訂單編號</th>
 												<th class="column-2" style="text-align: center;">明細編號</th>
-												<th class="column-2" style="text-align: center;">活動編號</th>
+												<th class="column-2" style="text-align: center;">活動名稱/th>
 
-												<th class="column-2" style="text-align: center;">折後金額</th>
+												<th class="column-2" style="text-align: center;">金額</th>
 												<th class="column-2" style="text-align: center;">數量</th>
 
-												<th class="column-2" style="text-align: center;">評論日期</th>
-												<th class="column-2" style="text-align: center;">評論</th>
+												<th class="column-2" style="text-align: center;">五星評論</th>
+												<th class="column-2" style="text-align: center;">評論內容</th>
 												<th class="column-2" style="text-align: center;">修改評論</th>
 
 											</tr>
@@ -1114,6 +1114,37 @@ button:hover {
 							<td class="column-2" style="text-align: center; padding: 0.1%;">退貨</td>
 							<td class="column-7" style="text-align: center; padding: 0.1%;">
 								無法評論
+							</td>
+
+						</tr>
+					`;
+					}
+					 compare = order.orderID;
+				}
+			}
+		});
+</script>
+<script>
+	const listTb3 = document.querySelector('#listTb2');
+	fetch('orders')
+		.then(resp => resp.json())
+		.then(orderArr => {
+			for (let order of orderArr) {
+				let compare = 0;
+				for (let orderDetail of order.orderlists) {
+					if (order.ordType == 2 && compare != order.orderID){
+					listTb3.innerHTML += `
+						<tr class="table_row1">
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actName}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.actTotal}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">1</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.fiveStarReview}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.reviewContent}</td>
+							<td class="column-7" style="text-align: center; padding: 0.1%;">
+							<button
+							type="button" class="btn btn-dark">修改</button>
 							</td>
 
 						</tr>

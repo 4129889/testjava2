@@ -22,4 +22,34 @@ public class OrdersDaoImpl2 implements OrdersDao2 {
 			return null;
 		}
 	}
+	public int update(Orders Orders) {
+		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			session.update(Orders);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+		return -1;
+
+	}
+	@Override
+	public Orders findByPrimaryKey(Integer orderID) {
+		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Orders ordersHibernateVO = session.get(Orders.class, orderID);
+			session.getTransaction().commit();
+			return ordersHibernateVO;
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+		return null;
+
+	}
 }
