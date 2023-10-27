@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 
+import com.tha103.newview.orders.model.Orders;
 import com.tha103.util.HibernateUtil;
 
 public class OrdersDaoImpl2 implements OrdersDao2 {
@@ -42,9 +43,9 @@ public class OrdersDaoImpl2 implements OrdersDao2 {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			Orders ordersHibernateVO = session.get(Orders.class, orderID);
+			Orders ordersHibernate = session.get(Orders.class, orderID);
 			session.getTransaction().commit();
-			return ordersHibernateVO;
+			return ordersHibernate;
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
@@ -52,4 +53,29 @@ public class OrdersDaoImpl2 implements OrdersDao2 {
 		return null;
 
 	}
+	
+	@Override
+	public int delete(Integer orderID, Integer ordType) {
+
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+		try {
+			session.beginTransaction();
+			Orders orders = session.get(Orders.class, orderID);
+			if (orders != null) {
+				orders.setOrderID(ordType); // 例如，将字段设置为 null
+		            
+		            // 保存或更新记录以保存更改
+		            session.update(orders); // 如果使用 merge() 方法，请使用 session.merge(post);
+		        }
+			}
+			session.getTransaction().commit();
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+		return -1;
+		}
+	
 }

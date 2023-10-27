@@ -24,6 +24,7 @@ public class Orders implements Serializable {
 	private Timestamp ordTime;
 	private Integer ordType;
 	private Integer actQuantity;
+	private Integer pubID;
 	@OneToMany
 	@JoinColumn(name = "orderID", referencedColumnName = "orderID")
 	private List<Orderlist> orderlists;
@@ -32,7 +33,8 @@ public class Orders implements Serializable {
 	}
 
 	public Orders(Integer orderID, Integer userID, Integer ordTotal, Integer discount, Integer discountPrice,
-			Timestamp ordTime, Integer ordType, Integer actQuantity, List<Orderlist> orderlists) {
+			Timestamp ordTime, Integer ordType, Integer actQuantity, Integer pubID, List<Orderlist> orderlists) {
+		super();
 		this.orderID = orderID;
 		this.userID = userID;
 		this.ordTotal = ordTotal;
@@ -41,6 +43,7 @@ public class Orders implements Serializable {
 		this.ordTime = ordTime;
 		this.ordType = ordType;
 		this.actQuantity = actQuantity;
+		this.pubID = pubID;
 		this.orderlists = orderlists;
 	}
 
@@ -108,6 +111,14 @@ public class Orders implements Serializable {
 		this.actQuantity = actQuantity;
 	}
 
+	public Integer getPubID() {
+		return pubID;
+	}
+
+	public void setPubID(Integer pubID) {
+		this.pubID = pubID;
+	}
+
 	public List<Orderlist> getOrderlists() {
 		return orderlists;
 	}
@@ -115,4 +126,10 @@ public class Orders implements Serializable {
 	public void setOrderlists(List<Orderlist> orderlists) {
 		this.orderlists = orderlists;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
 }

@@ -493,8 +493,8 @@
 									<div class="wrap-table-shopping-cart">
 										<table id="listTb1" class="table-shopping-cart">
 											<tr class="table_head">
-												<th class="column-2" style="text-align: center;"></th>
-												<th class="column-2" style="text-align: center;">訂單明細</th>
+
+												<th class="column-2" style="text-align: center;">訂單編號</th>
 												<th class="column-2" style="text-align: center;">活動編號</th>
 												<th class="column-2" style="text-align: center;">金額</th>
 												<th class="column-2" style="text-align: center;">數量</th>
@@ -564,7 +564,7 @@
 									<div class="wrap-table-shopping-cart">
 										<table id=listTb2 class="table-shopping-cart">
 											<tr class="table_head">
-												<th class="column-2" style="text-align: center;"></th>
+
 												<th class="column-2" style="text-align: center;">訂單編號</th>
 												<th class="column-2" style="text-align: center;">明細編號</th>
 												<th class="column-2" style="text-align: center;">活動名稱</th>
@@ -575,9 +575,40 @@
 												<th class="column-2" style="text-align: center;">五星評論</th>
 												<th class="column-2" style="text-align: center;">評論內容</th>
 												<th class="column-2" style="text-align: center;">修改評論</th>
-												<th class="column-2" style="text-align: center;">刪除</th>
 
-											</tr>								
+											</tr>
+
+											<tr class="table_row1">
+												<td class="column-2" style="text-align: center; padding: 0.1%;">123</td>
+												<td class="column-2" style="text-align: center; padding: 0.1%;">234</td>
+												<td class="column-2" style="text-align: center; padding: 0.1%;">345</td>
+												<td class="column-2" style="text-align: center; padding: 0.1%;">500</td>
+												<td class="column-2" style="text-align: center; padding: 0.1%;">1</td>
+
+												<td class="column-2" style="text-align: center; padding: 0.1%;">
+													2023-12-18</td>
+												<td class="column-2" style="text-align: center; padding: 0.1%;">
+													一二三一二三一二三一二三一二三一二三一二三一二三一二三一</td>
+												<td class="column-7" style="text-align: center; padding: 0.1%;"><button
+														type="button" class="btn btn-dark">修改</button></td>
+
+
+											</tr>
+
+											<tr class="table_row1">
+												<td class="column-2" style="text-align: center; padding: 0.1%;">223</td>
+												<td class="column-2" style="text-align: center; padding: 0.1%;">334</td>
+												<td class="column-2" style="text-align: center; padding: 0.1%;">445</td>
+												<td class="column-2" style="text-align: center; padding: 0.1%;">600</td>
+												<td class="column-2" style="text-align: center; padding: 0.1%;">1</td>
+												<td class="column-2" style="text-align: center; padding: 0.1%;">
+													2023-12-18</td>
+												<td class="column-2" style="text-align: center; padding: 0.1%;">
+													一二三一二三一二三一二三一二三一二三一二三一二三一二三一二三一二三一二三一二三一二三一二三</td>
+												<td class="column-7" style="text-align: center; padding: 0.1%;"><button
+														type="button" class="btn btn-dark">修改</button></td>
+
+											</tr>
 										</table>
 									</div>
 
@@ -1047,7 +1078,7 @@
 							<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
 							<img class="targetImage1" alt="IMG" src="${bytesToUrl(orderDetail.act.actPics[0].actPic)}">
 							</div></td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actName}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.discountPrice}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.actQuantity}</td>
@@ -1090,7 +1121,7 @@
 							<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
 							<img class="targetImage1" alt="IMG" src="${bytesToUrl(orderDetail.act.actPics[0].actPic)}">
 							</div></td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actName}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.discountPrice}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.actQuantity}</td>
@@ -1134,10 +1165,6 @@
 							<td class="column-7" style="text-align: center; padding: 0.1%;">
 							<button
 							type="button" class="btn btn-dark">修改</button>
-							</td>
-							<td class="column-7" style="text-align: center; padding: 0.1%;">
-							<button
-							type="button" class="btn btn-dark">刪除</button>
 							</td>
 
 						</tr>

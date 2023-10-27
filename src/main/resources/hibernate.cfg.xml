@@ -42,6 +42,7 @@
         <mapping class="com.tha103.newview.orderlist.model.OrderListVO"/>
                 
         <mapping class="com.tha103.newview.orders.model.Act" />
+        <mapping class="com.tha103.newview.orders.model.ActPic" />
         <mapping class="com.tha103.newview.orders.model.Orders" />
         <mapping class="com.tha103.newview.orders.model.Orderlist" />
     </session-factory>

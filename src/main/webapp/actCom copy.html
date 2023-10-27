@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>.star {
+		color: gray;
+		cursor: pointer;
+	  }
+	  </style>
+</head>
+<body>
+	<div class="rating">
+		<span class="star" onclick="rate(1)">&#9733;</span>
+		<span class="star" onclick="rate(2)">&#9733;</span>
+		<span class="star" onclick="rate(3)">&#9733;</span>
+		<span class="star" onclick="rate(4)">&#9733;</span>
+		<span class="star" onclick="rate(5)">&#9733;</span>
+	  </div>
+	  <p id="ratingResult">用户评分：0星</p>
+	  
+	  <script>
+let userRating = 5;
+
+function rate(stars) {
+  userRating = stars;
+  updateRating();
+  highlightStars(stars);
+}
+
+function updateRating() {
+  const ratingResult = document.getElementById("ratingResult");
+  ratingResult.textContent = "用户评分：" + userRating + "星";
+}
+
+function highlightStars(stars) {
+  const allStars = document.querySelectorAll(".star");
+  for (let i = 0; i < allStars.length; i++) {
+    if (i < stars) {
+      allStars[i].style.color = "gold"; // 显示为黄色
+    } else {
+      allStars[i].style.color = "gray"; // 显示为灰色
+    }
+  }
+}
+
+	  </script>
+</body>
+</html>

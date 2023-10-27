@@ -9,4 +9,6 @@ public interface OrdersDao2 {
 	public int update(Orders Orders);
 	
 	public Orders findByPrimaryKey(Integer orderID);
+	
+	public int delete(Integer orderID, Integer ordType);
 }
