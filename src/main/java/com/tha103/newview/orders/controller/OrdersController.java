@@ -2,7 +2,6 @@ package com.tha103.newview.orders.controller;
 
 import java.io.IOException;
 
-import javax.json.JsonObject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.tha103.newview.orders.model.Orderlist;
 import com.tha103.newview.orders.service.OrdersService2;
 import com.tha103.newview.orders.service.impl.OrdersServiceImpl2;
 import com.tha103.util.HibernateUtil;
@@ -42,20 +43,37 @@ public class OrdersController extends HttpServlet {
 		resp.getWriter().write(gson.toJson(list));
 		HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
 	}
-	@Override
-	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Integer userID = 0;
-		Integer uid = (Integer) req.getSession().getAttribute("userID");
-		if (uid != null) {
-			userID = uid;
-		} else {
-			userID = 1;
-		}
-		var actID = Integer.parseInt(req.getParameter("actID"));
-		var result = service.removeOrders(orderID, userID);
 
-		JsonObject respBody = new JsonObject();
-		respBody.addProperty("result", result);
-		resp.getWriter().write(respBody.toString());
+//	@Override
+//	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		Integer userID = 0;
+//		Integer uid = (Integer) req.getSession().getAttribute("userID");
+//		if (uid != null) {
+//			userID = uid;
+//		} else {
+//			userID = 1;
+//		}
+//		var actID = Integer.parseInt(req.getParameter("actID"));
+//		var result = service.removeOrders(orderID, userID);
+//
+//		JsonObject respBody = new JsonObject();
+//		respBody.addProperty("result", result);
+//		resp.getWriter().write(respBody.toString());
+//	}
+	
+	@Override
+	protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		var orderListID = Integer.parseInt(req.getParameter("orderListID"));
+		resp.setContentType("application/json; charset=utf-8");
+		var list = service.findByOrderListID(orderListID);
+		resp.getWriter().write(gson.toJson(list));
+	}
+	
+	@Override
+	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		var orderlist = gson.fromJson(req.getReader(), Orderlist.class);
+		var respBody = new JsonObject();
+		respBody.addProperty("success", service.saveCom(orderlist));
+		resp.getWriter().write(gson.toJson(respBody));
 	}
 }

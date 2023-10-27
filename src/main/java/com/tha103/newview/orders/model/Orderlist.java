@@ -2,6 +2,7 @@ package com.tha103.newview.orders.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
 public class Orderlist implements Serializable {
@@ -28,13 +31,18 @@ public class Orderlist implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "actID", insertable = false, updatable = false)
 	private Act act;
+	@OneToMany
+	@JoinColumn(name = "orderListID", referencedColumnName = "orderListID")
+	private List<ComPic> comPics;
+	@Transient
+	private List<String> comPicsBase64;
 	
 	public Orderlist() {
 	}
 
 	public Orderlist(Integer orderListID, Integer orderID, Integer actTotal, byte[] qrCodeId, Timestamp orderListTime,
 			String reviewContent, Integer fiveStarReview, Integer seatRows, Integer seatColumns, String vacancy,
-			Act act) {
+			Act act, List<ComPic> comPics) {
 		this.orderListID = orderListID;
 		this.orderID = orderID;
 		this.actTotal = actTotal;
@@ -46,6 +54,7 @@ public class Orderlist implements Serializable {
 		this.seatColumns = seatColumns;
 		this.vacancy = vacancy;
 		this.act = act;
+		this.comPics = comPics;
 	}
 
 	public Integer getOrderListID() {
@@ -134,5 +143,13 @@ public class Orderlist implements Serializable {
 
 	public void setAct(Act act) {
 		this.act = act;
+	}
+
+	public List<ComPic> getComPics() {
+		return comPics;
+	}
+
+	public void setComPics(List<ComPic> comPics) {
+		this.comPics = comPics;
 	}
 }

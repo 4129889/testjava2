@@ -96,6 +96,7 @@
 			/* 文字置中 */
 		}
 
+
 		/* 文本樣式 */
 		.text1 {
 			font-size: 32px;
@@ -562,42 +563,46 @@
 							<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
 								<div class="m-l-25 m-r--38 m-lr-0-xl">
 									<div class="wrap-table-shopping-cart">
-										<table id=listTb2 class="table-shopping-cart">
+										<table id="listTb2" class="table-shopping-cart">
 											<tr class="table_head">
+
 												<th class="column-2" style="text-align: center;"></th>
 												<th class="column-2" style="text-align: center;">訂單編號</th>
 												<th class="column-2" style="text-align: center;">明細編號</th>
 												<th class="column-2" style="text-align: center;">活動名稱</th>
 
+
 												<th class="column-2" style="text-align: center;">金額</th>
 												<th class="column-2" style="text-align: center;">數量</th>
-
 												<th class="column-2" style="text-align: center;">五星評論</th>
 												<th class="column-2" style="text-align: center;">評論內容</th>
 												<th class="column-2" style="text-align: center;">修改評論</th>
+
 												<th class="column-2" style="text-align: center;">刪除</th>
 
 											</tr>								
+
 										</table>
 									</div>
-
-
 								</div>
 							</div>
-
-
 						</div>
 					</div>
 					<div class="page_block" style="text-align: center; margin-bottom: 20px">
 						<ul class="page_list" style="margin: 0; padding: 0">
-							<li><a href="">
-									<< </a> <a href="">1</a> <a href="">2</a> <a href="">3</a> <a href="">>></a></li>
+
+							<li>
+								<a href="">&lt;&lt;</a>
+								<a href="">1</a>
+								<a href="">2</a>
+								<a href="">3</a>
+								<a href="">&gt;&gt;</a>
+							</li>
 						</ul>
 					</div>
 				</form>
 			</div>
 		</div>
-
 	</div>
 
 
@@ -893,7 +898,9 @@
 					if (order.ordType == 0 && compare != order.orderID) {
 						listTb.innerHTML += `
 						<tr class="table_row1 toggleButton${order.orderID}" >
+
 							<td class="column-2 toggleButton${order.orderID}" style="text-align: center; padding: 0.1%;">${order.pubID}</td>
+
 							<td class="column-2 toggleButton${order.orderID}" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actName}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.ordTotal}</td>
@@ -936,6 +943,7 @@
 							totalColumns = 10;
 						}
 						let seatNumber = (rowIndex - 1) * totalColumns + seatIndex;
+
 						
 						let parts = orderDetail.vacancy.split(",");
 						let number = -1;
@@ -953,6 +961,7 @@
 							<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
 							<img class="targetImage1" alt="IMG" src="${bytesToUrl(orderDetail.act.actPics[0].actPic)}">
 							</div></td>
+
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actPrice}</td>
@@ -969,12 +978,14 @@
 						</tr>
 					`;
 						}
+
 						if (number == 1) {
 							listTb.innerHTML += `
 							<tr class="hiddenContent content${order.orderID}">
 								<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
 								<img class="targetImage1" alt="IMG" src="${bytesToUrl(orderDetail.act.actPics[0].actPic)}">
 								</div></td>
+
 								<td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
 								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
 								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actPrice}</td>
@@ -990,12 +1001,14 @@
 							</tr>
 						`;
 						}
+
 						if (number == 2) {
 							listTb.innerHTML += `
 							<tr class="hiddenContent content${order.orderID}">
 								<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
 								<img class="targetImage1" alt="IMG" src="${bytesToUrl(orderDetail.act.actPics[0].actPic)}">
 								</div></td>
+
 								<td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
 								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
 								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actPrice}</td>
@@ -1031,6 +1044,7 @@
 			orderArr.reverse();
 			for (let order of orderArr) {
 				for (let orderDetail of order.orderlists) {
+
 					let parts = orderDetail.vacancy.split(",");
 					let number = -1;
 					if (parts.length > 1) {
@@ -1042,6 +1056,7 @@
 					    console.log("未找到逗号后面的数字部分");
 					}
 					if (number == 1 ) {
+
 						listTb1.innerHTML += `
 						<tr class="table_row1">
 							<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
@@ -1074,6 +1089,7 @@
 			orderArr.reverse();
 			for (let order of orderArr) {
 				for (let orderDetail of order.orderlists) {
+
 					let parts = orderDetail.vacancy.split(",");
 					let number = -1;
 					if (parts.length > 1) {
@@ -1085,6 +1101,7 @@
 					    console.log("未找到逗号后面的数字部分");
 					}
 					if (number == 2) {
+
 						listTb2.innerHTML += `
 						<tr class="table_row1">
 							<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
@@ -1104,6 +1121,7 @@
 						</tr>
 					`;
 					}
+
 				}
 			}
 		});
@@ -1132,8 +1150,7 @@
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.fiveStarReview}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.reviewContent}</td>
 							<td class="column-7" style="text-align: center; padding: 0.1%;">
-							<button
-							type="button" class="btn btn-dark">修改</button>
+							<button type="button" class="btn btn-dark" onclick="location = 'actCom.html?orderListID=${orderDetail.orderListID}'">修改</button>
 							</td>
 							<td class="column-7" style="text-align: center; padding: 0.1%;">
 							<button
@@ -1142,6 +1159,7 @@
 
 						</tr>
 					`;
+
 					}
 					compare = order.orderID;
 				}

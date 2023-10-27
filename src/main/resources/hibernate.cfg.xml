@@ -45,5 +45,6 @@
         <mapping class="com.tha103.newview.orders.model.ActPic" />
         <mapping class="com.tha103.newview.orders.model.Orders" />
         <mapping class="com.tha103.newview.orders.model.Orderlist" />
+        <mapping class="com.tha103.newview.orders.model.ComPic" />
     </session-factory>
 </hibernate-configuration>
