@@ -683,9 +683,10 @@
 			e.preventDefault();
 
 			const imgs = document.querySelectorAll('.preview_img');
-			const comPic1 = imgs[0].src.startsWith('blob:') ? null : imgs[0].src.substring(imgs[0].src.indexOf(',') + 1);
-			const comPic2 = imgs[1].src.startsWith('blob:') ? null : imgs[1].src.substring(imgs[1].src.indexOf(',') + 1);
-			const comPic3 = imgs[2].src.startsWith('blob:') ? null : imgs[2].src.substring(imgs[2].src.indexOf(',') + 1);
+			const comPicObjectList = [];
+			for (let img of imgs) {
+				comPicObjectList.push(getComPicObjectFromElement(id, img));
+			}
 
 			fetch('orders', {
 				method: 'PUT',
@@ -693,7 +694,7 @@
 					orderListID: id,
 					reviewContent: reviewContent.value,
 					fiveStarReview: userRating,
-					comPicsBase64: [comPic1, comPic2, comPic3]
+					comPics: comPicObjectList
 				})
 			})
 				.then(resp => resp.json())
@@ -702,6 +703,13 @@
 					location = 'forum_home.html';
 				});
 		});
+
+		function getComPicObjectFromElement(orderListID, element) {
+			const { src } = element;
+			const comPicID = element.dataset.compicid;
+			const comPicBase64 = src.startsWith('blob:') ? null : src.substring(src.indexOf(',') + 1);
+			return { comPicID, orderListID, comPicBase64 };
+		}
 	</script>
 
 	<!--===============================================================================================-->
@@ -736,23 +744,28 @@
 				var reader = new FileReader(); // 用來讀取檔案
 				reader.readAsDataURL(file); // 讀取檔案
 				reader.addEventListener("load", function () {
-					let img_str = '<img src="' + reader.result + '" class="preview_img">';
-					previewEl.innerHTML = img_str;
+					const img = previewEl.querySelector('img');
+					if (img) {
+						img.src = reader.result;
+					} else {
+						let img_str = '<img src="' + reader.result + '" class="preview_img">';
+						previewEl.innerHTML = img_str;
+					}
 				});
 			};
 
-			p_file_el.addEventListener("change", function (e) {
-				if (this.files.length > 0) {
-					preview_img(this.files[0]);
-				} else {
-					preview_el.innerHTML = '<span class="text">預覽圖</span>';
-				}
-			});
+			// p_file_el.addEventListener("change", function (e) {
+			// 	if (this.files.length > 0) {
+			// 		preview_img(this.files[0]);
+			// 	} else {
+			// 		preview_el.innerHTML = '<span class="text">預覽圖</span>';
+			// 	}
+			// });
 		});
 	</script>
 
 	<!--===============================================================================================-->
-	<script> //上傳檔案顯示
+	<!-- <script> //上傳檔案顯示
 		const fileInput = document.getElementById('validatedCustomFile');
 		const selectedFileName = document.getElementById('selectedFileName');
 
@@ -760,7 +773,7 @@
 			const fileName = this.value.split('\\').pop(); // 获取文件名
 			selectedFileName.textContent = fileName; // 显示文件名
 		});
-	</script>
+	</script> -->
 	<!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 	<!--===============================================================================================-->
@@ -833,7 +846,7 @@
 <script>
 	const urlParams = new URLSearchParams(location.search);
 	const id = urlParams.get('orderListID');
-	console.log(id);
+
 	const userID = document.querySelector('#userID');
 	const actName = document.querySelector('#actName');
 	const orderListID = document.querySelector('#orderListID');
@@ -843,8 +856,6 @@
 		document.querySelector('#preview2'),
 		document.querySelector('#preview3')
 	];
-
-	let comPics;
 
 	fetch(`orders?orderListID=${id}`, { method: 'OPTIONS' })
 		.then(resp => resp.json())
@@ -856,9 +867,15 @@
 			rate(order.fiveStarReview);
 			reviewContent.value = order.reviewContent;
 
-			comPics = list?.map(o => o.aliasToValue.comPic);
-			for (let index = 0; index < comPics.length; index++) {
-				previews[index].innerHTML = `<img src="${bytesToUrl(comPics[index])}" class="preview_img">`;
+			const comPicObjectList = list?.map(o => {
+				return {
+					comPicID: o.aliasToValue.comPicID,
+					comPic: o.aliasToValue.comPic
+				};
+			});
+			for (let index = 0; index < comPicObjectList.length; index++) {
+				const comPicObject = comPicObjectList[index];
+				previews[index].innerHTML = `<img data-compicid="${comPicObject.comPicID}" src="${bytesToUrl(comPicObject.comPic)}" class="preview_img">`;
 			}
 		});
 

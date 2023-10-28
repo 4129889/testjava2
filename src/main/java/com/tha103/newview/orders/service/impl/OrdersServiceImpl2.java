@@ -1,14 +1,17 @@
 package com.tha103.newview.orders.service.impl;
 
+import java.util.Base64;
 import java.util.List;
 
 import javax.persistence.Tuple;
 
+import com.tha103.newview.orders.model.ComPic;
 import com.tha103.newview.orders.model.Orderlist;
 import com.tha103.newview.orders.model.Orders;
 import com.tha103.newview.orders.model.OrdersDao2;
 import com.tha103.newview.orders.model.OrdersDaoImpl2;
 import com.tha103.newview.orders.service.OrdersService2;
+import com.tha103.util.HibernateUtil;
 
 public class OrdersServiceImpl2 implements OrdersService2 {
 	private OrdersDao2 dao;
@@ -32,7 +35,35 @@ public class OrdersServiceImpl2 implements OrdersService2 {
 		if (orderlist == null || orderlist.getOrderListID() == null) {
 			return false;
 		}
-		return dao.updateOrderlistForCom(orderlist) > 0;
+		var session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			var tx = session.beginTransaction();
+			
+			if (dao.updateOrderlistForCom(orderlist) != 1) {
+				throw new RuntimeException("update Orderlist fail");
+			}
+			
+			var comPics = orderlist.getComPics();
+			if (comPics != null && !comPics.isEmpty()) {
+				for (ComPic comPic : comPics) {
+					var base64 = comPic.getComPicBase64();
+					if (base64 == null) {
+						continue;
+					}
+					var bytes = Base64.getDecoder().decode(base64);
+					comPic.setComPic(bytes);
+					if (dao.updateComPic(comPic) != 1) {
+						throw new RuntimeException("update ComPic fail");
+					}
+				}
+			}
+			tx.commit();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+			return false;
+		}
 	}
 	
 	public int cancelOrders(Integer orderID) {			

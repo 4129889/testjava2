@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class ComPic implements Serializable {
@@ -15,6 +16,8 @@ public class ComPic implements Serializable {
 	private Integer comPicID;
 	private Integer orderListID;
 	private byte[] comPic;
+	@Transient
+	private String comPicBase64;
 	
 	public ComPic() {
 	}
@@ -47,5 +50,13 @@ public class ComPic implements Serializable {
 
 	public void setComPic(byte[] comPic) {
 		this.comPic = comPic;
+	}
+
+	public String getComPicBase64() {
+		return comPicBase64;
+	}
+
+	public void setComPicBase64(String comPicBase64) {
+		this.comPicBase64 = comPicBase64;
 	}
 }

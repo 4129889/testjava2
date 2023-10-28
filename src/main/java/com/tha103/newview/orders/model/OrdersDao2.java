@@ -8,6 +8,8 @@ public interface OrdersDao2 {
 	
 	int updateOrderlistForCom(Orderlist nOrderlist);
 	
+	int updateComPic(ComPic comPic);
+	
 	List<Orders> selectByUserID(Integer userID);
 	
 	List<Tuple> selectByOrderListIDForActCom(Integer orderListID);

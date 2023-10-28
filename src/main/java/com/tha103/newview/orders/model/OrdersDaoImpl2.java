@@ -13,18 +13,10 @@ public class OrdersDaoImpl2 implements OrdersDao2 {
 	@Override
 	public int updateOrderlistForCom(Orderlist nOrderlist) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			var tx = session.beginTransaction();
-			var oOrderlist = session.getReference(Orderlist.class, nOrderlist.getOrderListID());
-			oOrderlist.setReviewContent(nOrderlist.getReviewContent());
-			oOrderlist.setFiveStarReview(nOrderlist.getFiveStarReview());
-			tx.commit();
-			return 1;
-		} catch (Exception e) {
-			e.printStackTrace();
-			session.getTransaction().rollback();
-			return -1;
-		}
+		var oOrderlist = session.getReference(Orderlist.class, nOrderlist.getOrderListID());
+		oOrderlist.setReviewContent(nOrderlist.getReviewContent());
+		oOrderlist.setFiveStarReview(nOrderlist.getFiveStarReview());
+		return 1;
 	}
 
 	@Override
@@ -45,7 +37,7 @@ public class OrdersDaoImpl2 implements OrdersDao2 {
 	public List<Tuple> selectByOrderListIDForActCom(Integer orderListID) {
 		var sql = new StringBuilder()
 				.append("select ")
-				.append("	o.orderID, o.userID, a.actName, ol.orderListID, ol.fiveStarReview, ol.reviewContent, c.comPic ")
+				.append("	o.orderID, o.userID, a.actName, ol.orderListID, ol.fiveStarReview, ol.reviewContent, c.comPicID, c.comPic ")
 				.append("from ")
 				.append("	orders o ")
 				.append("	left join orderlist ol ")
@@ -149,5 +141,11 @@ public class OrdersDaoImpl2 implements OrdersDao2 {
 		}
 		return -1;
 	}
-	
+
+	@Override
+	public int updateComPic(ComPic comPic) {
+		var session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.merge(comPic);
+		return 1;
+	}
 }

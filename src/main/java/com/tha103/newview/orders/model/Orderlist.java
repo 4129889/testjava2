@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
 
 @Entity
 public class Orderlist implements Serializable {
@@ -34,8 +33,6 @@ public class Orderlist implements Serializable {
 	@OneToMany
 	@JoinColumn(name = "orderListID", referencedColumnName = "orderListID")
 	private List<ComPic> comPics;
-	@Transient
-	private List<String> comPicsBase64;
 	
 	public Orderlist() {
 	}
