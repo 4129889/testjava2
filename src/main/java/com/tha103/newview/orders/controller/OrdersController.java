@@ -76,4 +76,24 @@ public class OrdersController extends HttpServlet {
 		respBody.addProperty("success", service.saveCom(orderlist));
 		resp.getWriter().write(gson.toJson(respBody));
 	}
+	
+	protected void doHead(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		var orderID = Integer.parseInt(req.getParameter("orderID"));
+		var list = service.cancelOrders(orderID);
+
+
+		JsonObject respBody = new JsonObject();
+		respBody.addProperty("result", list);
+		resp.getWriter().write(respBody.toString());
+	}
+	
+	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		var orderListID = Integer.parseInt(req.getParameter("orderListID"));
+		var list = service.cancelReview(orderListID);
+
+
+		JsonObject respBody = new JsonObject();
+		respBody.addProperty("result", list);
+		resp.getWriter().write(respBody.toString());
+	}
 }

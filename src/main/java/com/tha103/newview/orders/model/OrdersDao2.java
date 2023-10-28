@@ -16,5 +16,7 @@ public interface OrdersDao2 {
 	
 	public Orders findByPrimaryKey(Integer orderID);
 	
-	public int delete(Integer orderID, Integer ordType);
+	public int cancelOrdType(Integer orderID);
+	
+	public int deleteReview(Integer orderListID);
 }

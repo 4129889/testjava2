@@ -35,16 +35,13 @@ public class OrdersServiceImpl2 implements OrdersService2 {
 		return dao.updateOrderlistForCom(orderlist) > 0;
 	}
 	
-	public Orders updateOrders(Integer ordType) {
+	public int cancelOrders(Integer orderID) {			
+		return dao.cancelOrdType(orderID);
 		
-		Orders orders = new Orders();
-		
-
-		
-		orders.setOrdType(ordType);
-
-			
-		return orders;
+	}
+	
+	public int cancelReview(Integer orderListID) {			
+		return dao.deleteReview(orderListID);
 		
 	}
 }

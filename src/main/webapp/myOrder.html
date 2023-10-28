@@ -909,9 +909,9 @@
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.actQuantity}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListTime}</td>
 
-							<td class="column-2" style="text-align: center; padding: 0.1%;">未使用</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;"><button type="button" onclick="remove(${order.orderID})" class="btn btn-dark show-form-button">取消</button></td>
 							<td class="column-7" style="text-align: center; padding: 0.1%;">
-								<button type="button" class="btn btn-dark goticket toggleButton${order.orderID}">票券</button>
+								<button type="button" onclick="location = 'myTicketOrd.html?orderID=${order.orderID}'" class="btn btn-dark goticket toggleButton${order.orderID}">票券</button>
 							</td>
 						</tr>
 						
@@ -973,7 +973,7 @@
 								<button type="button" class="btn btn-dark show-form-button">取消</button>
 							</td>
 							<td class="column-7" style="text-align: center; padding: 0.1%;">
-							<button type="button" class="btn btn-dark goticket">票券</button>
+							<button type="button" onclick="location = 'myTicketSin.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">票券</button>
 							</td>
 						</tr>
 					`;
@@ -996,7 +996,7 @@
 								<td class="column-7" style="text-align: center; ">
 									<button type="button" class="btn btn-dark goticket">評論</button></td>
 								<td class="column-7" style="text-align: center; padding: 0.1%;">
-								<button type="button" class="btn btn-dark goticket">票券</button>
+								<button type="button" onclick="location = 'myTicketSin.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">票券</button>
 								</td>
 							</tr>
 						`;
@@ -1018,7 +1018,7 @@
 								<td class="column-2" style="text-align: center; padding: 0.1%;">已取消</td>
 								<td class="column-7" style="text-align: center; ">已取消</td>
 								<td class="column-7" style="text-align: center; padding: 0.1%;">
-								<button type="button" class="btn btn-dark goticket">票券</button>
+								<button type="button" onclick="location = 'myTicketSin.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">票券</button>
 								</td>
 							</tr>
 						`;
@@ -1070,7 +1070,7 @@
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListTime}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">已使用</td>
 							<td class="column-7" style="text-align: center; padding: 0.1%;">
-								<button type="button" class="btn btn-dark goticket">評論</button>
+								<button type="button" onclick="location = 'actCom.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">評論</button>
 							</td>
 
 						</tr>
@@ -1134,9 +1134,8 @@
 		.then(orderArr => {
 			orderArr.reverse();
 			for (let order of orderArr) {
-				let compare = 0;
 				for (let orderDetail of order.orderlists) {
-					if (order.ordType == 2 && compare != order.orderID) {
+					if (order.ordType == 2) {
 						listTb3.innerHTML += `
 						<tr class="table_row1">
 							<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
@@ -1154,17 +1153,35 @@
 							</td>
 							<td class="column-7" style="text-align: center; padding: 0.1%;">
 							<button
-							type="button" class="btn btn-dark">刪除</button>
+							type="button" onclick="deleteReview(${orderDetail.orderListID})" class="btn btn-dark">刪除</button>
 							</td>
 
 						</tr>
 					`;
 
 					}
-					compare = order.orderID;
 				}
 			}
 		});
+	
+	
+	function remove(orderID) {
+		fetch(`orders?orderID=${orderID}`, {
+			method: 'Head'
+		})
+			.then(body => {
+				location.reload();
+			});
+	}
+	
+	function deleteReview(orderListID) {
+		fetch(`orders?orderListID=${orderListID}`, {
+			method: 'Delete'
+		})
+			.then(body => {
+				location.reload();
+			});
+	}
 </script>
 <!-- 顯示切換 -->
     <script>

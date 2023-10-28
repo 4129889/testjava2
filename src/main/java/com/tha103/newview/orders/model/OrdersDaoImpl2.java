@@ -6,7 +6,6 @@ import javax.persistence.Tuple;
 
 import org.hibernate.Session;
 
-import com.tha103.newview.orders.model.Orders;
 import com.tha103.util.HibernateUtil;
 
 public class OrdersDaoImpl2 implements OrdersDao2 {
@@ -105,19 +104,14 @@ public class OrdersDaoImpl2 implements OrdersDao2 {
 	}
 	
 	@Override
-	public int delete(Integer orderID, Integer ordType) {
-		
-		
-		
-		
-
+	public int cancelOrdType(Integer orderID) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 		try {
 			session.beginTransaction();
 			Orders orders = session.get(Orders.class, orderID);
 			if (orders != null) {
-				orders.setOrderID(ordType); // 例如，将字段设置为 null
+				orders.setOrdType(2); // 例如，将字段设置为 null
 		            
 		            // 保存或更新记录以保存更改
 		            session.update(orders); // 如果使用 merge() 方法，请使用 session.merge(post);
@@ -131,5 +125,29 @@ public class OrdersDaoImpl2 implements OrdersDao2 {
 		}
 		return -1;
 		}
+
+	@Override
+	public int deleteReview(Integer orderListID) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+		try {
+			session.beginTransaction();
+			Orderlist orderList = session.get(Orderlist.class, orderListID);
+			if (orderList != null) {
+				orderList.setReviewContent(""); // 例如，将字段设置为 null
+				orderList.setFiveStarReview(null);
+		            
+		            // 保存或更新记录以保存更改
+		            session.update(orderList); // 如果使用 merge() 方法，请使用 session.merge(post);
+		        }
+			
+			session.getTransaction().commit();
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+		return -1;
+	}
 	
 }

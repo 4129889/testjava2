@@ -15,5 +15,9 @@ public interface OrdersService2 {
 	
 	boolean saveCom(Orderlist orderlist);
 	
-	public Orders updateOrders(Integer ordType);
+	int cancelOrders(Integer orderID);
+	
+	int cancelReview(Integer orderListID);
+	
+	
 }
