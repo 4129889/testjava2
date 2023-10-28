@@ -106,6 +106,10 @@ public class OrdersDaoImpl2 implements OrdersDao2 {
 	
 	@Override
 	public int delete(Integer orderID, Integer ordType) {
+		
+		
+		
+		
 
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
@@ -118,7 +122,7 @@ public class OrdersDaoImpl2 implements OrdersDao2 {
 		            // 保存或更新记录以保存更改
 		            session.update(orders); // 如果使用 merge() 方法，请使用 session.merge(post);
 		        }
-			}
+			
 			session.getTransaction().commit();
 			return 1;
 		} catch (Exception e) {
