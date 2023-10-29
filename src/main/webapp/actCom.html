@@ -875,7 +875,12 @@
 			});
 			for (let index = 0; index < comPicObjectList.length; index++) {
 				const comPicObject = comPicObjectList[index];
-				previews[index].innerHTML = `<img data-compicid="${comPicObject.comPicID}" src="${bytesToUrl(comPicObject.comPic)}" class="preview_img">`;
+				const { comPicID, comPic } = comPicObject;
+				previews[index].innerHTML = `
+					<img
+						src="${bytesToUrl(comPic)}"
+						${comPicID ? 'data-compicid="' + comPicID + '"' : ''}
+						class="preview_img">`;
 			}
 		});
 
