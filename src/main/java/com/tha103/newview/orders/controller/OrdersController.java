@@ -20,7 +20,7 @@ import com.tha103.util.HibernateUtil;
 public class OrdersController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Gson gson = new GsonBuilder()
-			.setDateFormat("yyyy/MM/dd")
+			.setDateFormat("yyyy/MM/dd HH:mm:ss")
 			.create();
 	private OrdersService2 service;
 

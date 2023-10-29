@@ -856,6 +856,16 @@
 							totalColumns = 10;
 						}
 						let seatNumber = (rowIndex - 1) * totalColumns + seatIndex;
+						
+						var dateObject = new Date(orderDetail.act.time);
+						var formattedTime = dateObject.getHours().toString().padStart(2, '0') + ":" + 
+		                   dateObject.getMinutes().toString().padStart(2, '0') + ":" + 
+		                   dateObject.getSeconds().toString().padStart(2, '0');
+		                   
+	                   var formattedDate = dateObject.getFullYear() + "/" + 
+	                   (dateObject.getMonth() + 1).toString().padStart(2, '0') + "/" + 
+	                   dateObject.getDate().toString().padStart(2, '0');
+						
 						listTb2.innerHTML += `
 						<div class="page-header min-vh-75"
 						style="margin-top: -250px;  display: flex; justify-content: center; align-items: center; min-height: 100vh">
@@ -899,13 +909,13 @@
 															<div class="d-flex align-items-center mb-3 text-center mr-5">
 																<label for="birthdate" class="form-label me-3">日期時段</label>
 																<span id="birthdate"
-																	style="flex: 1; margin: 0 10px 10px 10px">${orderDetail.act.actTime}</span>
+																	style="flex: 1; margin: 0 10px 10px 10px">${formattedDate}</span>
 															</div>
 
 															<div class="d-flex align-items-center mb-3 text-center mr-5">
 																<label for="cellphone" class="form-label me-3">活動時段</label>
 																<span id="cellphone"
-																	style="flex: 1; margin: 0 10px 10px 10px">${orderDetail.act.time}</span>
+																	style="flex: 1; margin: 0 10px 10px 10px">${formattedTime}</span>
 															</div>
 
 															<div class="d-flex align-items-center mb-3 text-center mr-5">

@@ -24,9 +24,8 @@ public class Orderlist implements Serializable {
 	private Timestamp orderListTime;
 	private String reviewContent;
 	private Integer fiveStarReview;
-	private Integer seatRows;
-	private Integer seatColumns;
-	private String vacancy;
+	private Integer usedType;
+	private String seatRowsColumns;
 	@ManyToOne
 	@JoinColumn(name = "actID", insertable = false, updatable = false)
 	private Act act;
@@ -38,8 +37,9 @@ public class Orderlist implements Serializable {
 	}
 
 	public Orderlist(Integer orderListID, Integer orderID, Integer actTotal, byte[] qrCodeId, Timestamp orderListTime,
-			String reviewContent, Integer fiveStarReview, Integer seatRows, Integer seatColumns, String vacancy,
-			Act act, List<ComPic> comPics) {
+			String reviewContent, Integer fiveStarReview, Integer usedType, String seatRowsColumns, Act act,
+			List<ComPic> comPics) {
+		super();
 		this.orderListID = orderListID;
 		this.orderID = orderID;
 		this.actTotal = actTotal;
@@ -47,9 +47,8 @@ public class Orderlist implements Serializable {
 		this.orderListTime = orderListTime;
 		this.reviewContent = reviewContent;
 		this.fiveStarReview = fiveStarReview;
-		this.seatRows = seatRows;
-		this.seatColumns = seatColumns;
-		this.vacancy = vacancy;
+		this.usedType = usedType;
+		this.seatRowsColumns = seatRowsColumns;
 		this.act = act;
 		this.comPics = comPics;
 	}
@@ -110,28 +109,20 @@ public class Orderlist implements Serializable {
 		this.fiveStarReview = fiveStarReview;
 	}
 
-	public Integer getSeatRows() {
-		return seatRows;
+	public Integer getUsedType() {
+		return usedType;
 	}
 
-	public void setSeatRows(Integer seatRows) {
-		this.seatRows = seatRows;
+	public void setUsedType(Integer usedType) {
+		this.usedType = usedType;
 	}
 
-	public Integer getSeatColumns() {
-		return seatColumns;
+	public String getSeatRowsColumns() {
+		return seatRowsColumns;
 	}
 
-	public void setSeatColumns(Integer seatColumns) {
-		this.seatColumns = seatColumns;
-	}
-
-	public String getVacancy() {
-		return vacancy;
-	}
-
-	public void setVacancy(String vacancy) {
-		this.vacancy = vacancy;
+	public void setSeatRowsColumns(String seatRowsColumns) {
+		this.seatRowsColumns = seatRowsColumns;
 	}
 
 	public Act getAct() {
@@ -149,4 +140,10 @@ public class Orderlist implements Serializable {
 	public void setComPics(List<ComPic> comPics) {
 		this.comPics = comPics;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
 }

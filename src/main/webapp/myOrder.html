@@ -932,30 +932,7 @@
 					}
 					compare = order.orderID;
 					if (order.ordType == 0) {
-						let rowIndex = orderDetail.seatRows; // 第2排
-						let seatIndex = orderDetail.seatColumns;// 第8列
-						let actScope = orderDetail.act.actScope;// actScope 1或2或3
-						if (actScope === 1) {
-							totalColumns = 30;
-						} else if (actScope === 2) {
-							totalColumns = 20;
-						} else if (actScope === 3) {
-							totalColumns = 10;
-						}
-						let seatNumber = (rowIndex - 1) * totalColumns + seatIndex;
-
-						
-						let parts = orderDetail.vacancy.split(",");
-						let number = -1;
-						if (parts.length > 1) {
-						    let numberPart = parts[1];
-						    number = parseInt(numberPart);
-						    console.log("提取的数字是: " + number);
-						    console.log(number == 1);
-						} else {
-						    console.log("未找到逗号后面的数字部分");
-						}
-						if (number == 0){
+						if (orderDetail.usedType == 0){
 							listTb.innerHTML += `
 						<tr class="hiddenContent content${order.orderID}">
 							<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
@@ -966,8 +943,8 @@
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actPrice}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.seatRows}排${orderDetail.seatColumns}列</td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">${seatNumber}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.seatRowsColumns}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">seatNumber</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">未使用</td>
 							<td class="column-7" style="text-align: center; ">
 								<button type="button" class="btn btn-dark show-form-button">取消</button>
@@ -979,7 +956,7 @@
 					`;
 						}
 
-						if (number == 1) {
+						if (orderDetail.usedType == 1) {
 							listTb.innerHTML += `
 							<tr class="hiddenContent content${order.orderID}">
 								<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
@@ -990,8 +967,8 @@
 								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
 								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actPrice}</td>
 								<td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
-								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.seatRows}排${orderDetail.seatColumns}列</td>
-								<td class="column-2" style="text-align: center; padding: 0.1%;">${seatNumber}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.seatRowsColumns}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">seatNumber</td>
 								<td class="column-2" style="text-align: center; padding: 0.1%;">已使用</td>
 								<td class="column-7" style="text-align: center; ">
 									<button type="button" class="btn btn-dark goticket">評論</button></td>
@@ -1002,7 +979,7 @@
 						`;
 						}
 
-						if (number == 2) {
+						if (orderDetail.usedType == 2) {
 							listTb.innerHTML += `
 							<tr class="hiddenContent content${order.orderID}">
 								<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
@@ -1013,8 +990,8 @@
 								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
 								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actPrice}</td>
 								<td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
-								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.seatRows}排${orderDetail.seatColumns}列</td>
-								<td class="column-2" style="text-align: center; padding: 0.1%;">${seatNumber}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.seatRowsColumns}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">seatNumber</td>
 								<td class="column-2" style="text-align: center; padding: 0.1%;">已取消</td>
 								<td class="column-7" style="text-align: center; ">已取消</td>
 								<td class="column-7" style="text-align: center; padding: 0.1%;">
@@ -1044,18 +1021,7 @@
 			orderArr.reverse();
 			for (let order of orderArr) {
 				for (let orderDetail of order.orderlists) {
-
-					let parts = orderDetail.vacancy.split(",");
-					let number = -1;
-					if (parts.length > 1) {
-					    let numberPart = parts[1];
-					    number = parseInt(numberPart);
-					    console.log("提取的数字是: " + number);
-					    console.log(number == 1);
-					} else {
-					    console.log("未找到逗号后面的数字部分");
-					}
-					if (number == 1 ) {
+					if (orderDetail.usedType == 1) {
 
 						listTb1.innerHTML += `
 						<tr class="table_row1">
@@ -1089,18 +1055,7 @@
 			orderArr.reverse();
 			for (let order of orderArr) {
 				for (let orderDetail of order.orderlists) {
-
-					let parts = orderDetail.vacancy.split(",");
-					let number = -1;
-					if (parts.length > 1) {
-					    let numberPart = parts[1];
-					    number = parseInt(numberPart);
-					    console.log("提取的数字是: " + number);
-					    console.log(number == 2);
-					} else {
-					    console.log("未找到逗号后面的数字部分");
-					}
-					if (number == 2) {
+					if (orderDetail.usedType == 2) {
 
 						listTb2.innerHTML += `
 						<tr class="table_row1">

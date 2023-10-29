@@ -842,17 +842,6 @@
 			.then(orderArr => {
 				for (let order of orderArr) {
 					for (let orderDetail of order.orderlists) {
-						let rowIndex = orderDetail.seatRows; // 第2排
-						let seatIndex = orderDetail.seatColumns;// 第8列
-						let actScope = orderDetail.act.actScope;// actScope 1或2或3
-						if (actScope === 1) {
-							totalColumns = 30;
-						} else if (actScope === 2) {
-							totalColumns = 20;
-						} else if (actScope === 3) {
-							totalColumns = 10;
-						}
-						let seatNumber = (rowIndex - 1) * totalColumns + seatIndex;
 						listTb2.innerHTML += `
 						<div class="page-header min-vh-75"
 						style="margin-top: -250px;  display: flex; justify-content: center; align-items: center; min-height: 100vh">
@@ -885,7 +874,7 @@
 
 															<div class="d-flex align-items-center mb-3 text-center mr-5">
 																<label for="nickname" class="form-label me-3">活動座位</label>
-																<span id="nickname" style="flex: 1; margin: 0 10px 10px 10px">${orderDetail.seatRows}排${orderDetail.seatColumns}列</span>
+																<span id="nickname" style="flex: 1; margin: 0 10px 10px 10px">${orderDetail.seatRowsColumns}</span>
 															</div>
 
 															<div class="d-flex align-items-center mb-3 text-center mr-5">
@@ -908,7 +897,7 @@
 															<div class="d-flex align-items-center mb-3 text-center mr-5">
 																<label for="password" class="form-label me-3">座位編號</label>
 																<span id="password"
-																	style="flex: 1; margin: 0 10px 10px 10px">${seatNumber}</span>
+																	style="flex: 1; margin: 0 10px 10px 10px">seatNumber</span>
 															</div>
 
 															<img class="thumbnail" src="${getUrifromArr(orderDetail.qrCodeId)}" alt="小圖"
