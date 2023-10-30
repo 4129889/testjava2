@@ -402,16 +402,20 @@
 				<button class="button-down1 tab -on" id="page1Button" style="background-color: #00651e;"
 					data-target="tab1" onclick="changeButtonColor1()">訂單總覽</button>
 				<button class="button-down1 tab" id="page2Button" data-target="tab2"
-					onclick="changeButtonColor2()">歷史訂單</button>
+					onclick="changeButtonColor2()">未使用</button>
 				<button class="button-down1 tab" id="page3Button" data-target="tab3"
-					onclick="changeButtonColor3()">歷史留言</button>
+					onclick="changeButtonColor3()">已使用</button>
+				<button class="button-down1 tab" id="page4Button" data-target="tab4"
+					onclick="changeButtonColor4()">已取消</button>
+				<button class="button-down1 tab" id="page5Button" data-target="tab5"
+					onclick="changeButtonColor5()">歷史留言</button>
 			</ul>
 		</div>
 
 		<div class="tab_contents">
 
 			<div class="tab tab1 -on">
-				<form class="bg0 p-t-75 p-b-85">
+				<form class="bg0 p-t-75 p-b-85" style="margin-top:-70px">
 					<div class="container">
 						<div class="row">
 							<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
@@ -484,28 +488,27 @@
 					</div>
 				</form>
 			</div>
-
-			<div class="tab tab2">
-				<form class="bg0 p-t-75 p-b-85">
+			
+			<div class="tab tab2 ">
+				<form class="bg0 p-t-75 p-b-85" style="margin-top:-70px">
 					<div class="container">
 						<div class="row">
 							<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
 								<div class="m-l-25 m-r--38 m-lr-0-xl">
-									<div class="wrap-table-shopping-cart">
-										<table id="listTb1" class="table-shopping-cart">
-											<tr class="table_head">
-												<th class="column-2" style="text-align: center;"></th>
-												<th class="column-2" style="text-align: center;">訂單明細</th>
-												<th class="column-2" style="text-align: center;">活動編號</th>
-												<th class="column-2" style="text-align: center;">金額</th>
-												<th class="column-2" style="text-align: center;">數量</th>
-
-
-												<th class="column-2" style="text-align: center;">使用優惠</th>
-												<th class="column-2" style="text-align: center;">交易日期</th>
-												<th class="column-2" style="text-align: center;">訂單狀態</th>
-												<th class="column-2" style="text-align: center;">發表評論</th>
-
+									<div class="wrap-table-shopping-cart" >
+										<table id="listTb2" class="table-shopping-cart">
+											<tr class="table_head tbh">
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">廠商</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">訂單編號</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">活動名稱</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">金額</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">折扣金額</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">折後金額</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">數量</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">交易日期</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">訂單狀態</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">我的票券</th>
+												<button type="button" onclick="toggleContent()">切換顯示</button>
 											</tr>
 
 											<!-- 											<tr class="table_row1"> -->
@@ -519,7 +522,9 @@
 											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;"> -->
 											<!-- 													2023-12-18</td> -->
 											<!-- 												<td class="column-7" style="text-align: center; padding: 0.1%;"><button -->
-											<!-- 														type="button" class="btn btn-dark">評論</button></td> -->
+											<!-- 														type="button" class="btn btn-dark goticket">票券</button></td> -->
+											<!-- 												<td class="column-7" style="text-align: center; "><button type="button" -->
+											<!-- 														class="btn btn-dark show-form-button">取消</button></td> -->
 
 
 											<!-- 											</tr> -->
@@ -535,7 +540,9 @@
 											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;"> -->
 											<!-- 													2023-12-19</td> -->
 											<!-- 												<td class="column-7" style="text-align: center; padding: 0.1%;"><button -->
-											<!-- 														type="button" class="btn btn-dark">評論</button></td> -->
+											<!-- 														type="button" class="btn btn-dark goticket">票券</button></td> -->
+											<!-- 												<td class="column-7" style="text-align: center; "><button type="button" -->
+											<!-- 														class="btn btn-dark show-form-button">取消</button></td> -->
 
 											<!-- 											</tr> -->
 										</table>
@@ -556,14 +563,165 @@
 					</div>
 				</form>
 			</div>
-			<div class="tab tab3">
-				<form class="bg0 p-t-75 p-b-85">
+			
+			<div class="tab tab3 ">
+				<form class="bg0 p-t-75 p-b-85" style="margin-top:-70px">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+								<div class="m-l-25 m-r--38 m-lr-0-xl">
+									<div class="wrap-table-shopping-cart" >
+										<table id="listTb3" class="table-shopping-cart">
+											<tr class="table_head tbh">
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">廠商</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">訂單編號</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">活動名稱</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">金額</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">折扣金額</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">折後金額</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">數量</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">交易日期</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">訂單狀態</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">我的票券</th>
+												<button type="button" onclick="toggleContent()">切換顯示</button>
+											</tr>
+
+											<!-- 											<tr class="table_row1"> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">123</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">234</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">345</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">500</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">1</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">完成</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">首購</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;"> -->
+											<!-- 													2023-12-18</td> -->
+											<!-- 												<td class="column-7" style="text-align: center; padding: 0.1%;"><button -->
+											<!-- 														type="button" class="btn btn-dark goticket">票券</button></td> -->
+											<!-- 												<td class="column-7" style="text-align: center; "><button type="button" -->
+											<!-- 														class="btn btn-dark show-form-button">取消</button></td> -->
+
+
+											<!-- 											</tr> -->
+
+											<!-- 											<tr class="table_row1"> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">223</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">334</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">445</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">600</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">1</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">完成</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">生日</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;"> -->
+											<!-- 													2023-12-19</td> -->
+											<!-- 												<td class="column-7" style="text-align: center; padding: 0.1%;"><button -->
+											<!-- 														type="button" class="btn btn-dark goticket">票券</button></td> -->
+											<!-- 												<td class="column-7" style="text-align: center; "><button type="button" -->
+											<!-- 														class="btn btn-dark show-form-button">取消</button></td> -->
+
+											<!-- 											</tr> -->
+										</table>
+									</div>
+
+
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+					<div class="page_block" style="text-align: center; margin-bottom: 20px">
+						<ul class="page_list" style="margin: 0; padding: 0">
+							<li><a href="">
+									<< </a> <a href="">1</a> <a href="">2</a> <a href="">3</a> <a href="">>></a></li>
+						</ul>
+					</div>
+				</form>
+			</div>
+			
+			<div class="tab tab4 ">
+				<form class="bg0 p-t-75 p-b-85" style="margin-top:-70px">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+								<div class="m-l-25 m-r--38 m-lr-0-xl">
+									<div class="wrap-table-shopping-cart" >
+										<table id="listTb4" class="table-shopping-cart">
+											<tr class="table_head tbh">
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">廠商</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">訂單編號</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">活動名稱</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">金額</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">折扣金額</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">折後金額</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">數量</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">交易日期</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">訂單狀態</th>
+												<th class="column-2" style="text-align: center;font-size: 15px;white-space: nowrap;">我的票券</th>
+												<button type="button" onclick="toggleContent()">切換顯示</button>
+											</tr>
+
+											<!-- 											<tr class="table_row1"> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">123</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">234</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">345</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">500</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">1</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">完成</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">首購</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;"> -->
+											<!-- 													2023-12-18</td> -->
+											<!-- 												<td class="column-7" style="text-align: center; padding: 0.1%;"><button -->
+											<!-- 														type="button" class="btn btn-dark goticket">票券</button></td> -->
+											<!-- 												<td class="column-7" style="text-align: center; "><button type="button" -->
+											<!-- 														class="btn btn-dark show-form-button">取消</button></td> -->
+
+
+											<!-- 											</tr> -->
+
+											<!-- 											<tr class="table_row1"> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">223</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">334</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">445</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">600</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">1</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">完成</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;">生日</td> -->
+											<!-- 												<td class="column-2" style="text-align: center; padding: 0.1%;"> -->
+											<!-- 													2023-12-19</td> -->
+											<!-- 												<td class="column-7" style="text-align: center; padding: 0.1%;"><button -->
+											<!-- 														type="button" class="btn btn-dark goticket">票券</button></td> -->
+											<!-- 												<td class="column-7" style="text-align: center; "><button type="button" -->
+											<!-- 														class="btn btn-dark show-form-button">取消</button></td> -->
+
+											<!-- 											</tr> -->
+										</table>
+									</div>
+
+
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+					<div class="page_block" style="text-align: center; margin-bottom: 20px">
+						<ul class="page_list" style="margin: 0; padding: 0">
+							<li><a href="">
+									<< </a> <a href="">1</a> <a href="">2</a> <a href="">3</a> <a href="">>></a></li>
+						</ul>
+					</div>
+				</form>
+			</div>
+			
+			<div class="tab tab5">
+				<form class="bg0 p-t-75 p-b-85" style="margin-top:-45px">
 					<div class="container">
 						<div class="row">
 							<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
 								<div class="m-l-25 m-r--38 m-lr-0-xl">
 									<div class="wrap-table-shopping-cart">
-										<table id="listTb2" class="table-shopping-cart">
+										<table id="listTb5" class="table-shopping-cart">
 											<tr class="table_head">
 
 												<th class="column-2" style="text-align: center;"></th>
@@ -834,11 +992,15 @@
 			const page1Button = document.getElementById("page1Button");
 			const page2Button = document.getElementById("page2Button");
 			const page3Button = document.getElementById("page3Button");
+			const button4 = document.getElementById("page4Button");
+			const button5 = document.getElementById("page5Button");
 
 			// 改变按钮颜色
 			page1Button.style.backgroundColor = "#00651e";
 			page2Button.style.backgroundColor = "#555";
 			page3Button.style.backgroundColor = "#555";
+			page4Button.style.backgroundColor = "#555";
+			page5Button.style.backgroundColor = "#555";
 		}
 	</script>
 
@@ -849,11 +1011,15 @@
 			const button1 = document.getElementById("page1Button");
 			const button2 = document.getElementById("page2Button");
 			const button3 = document.getElementById("page3Button");
+			const button4 = document.getElementById("page4Button");
+			const button5 = document.getElementById("page5Button");
 
 			// 改变按钮颜色
 			page1Button.style.backgroundColor = "#555";
 			page2Button.style.backgroundColor = "#00651e";
 			page3Button.style.backgroundColor = "#555";
+			page4Button.style.backgroundColor = "#555";
+			page5Button.style.backgroundColor = "#555";
 		}
 	</script>
 
@@ -864,11 +1030,45 @@
 			const button1 = document.getElementById("page1Button");
 			const button2 = document.getElementById("page2Button");
 			const button3 = document.getElementById("page3Button");
+			const button4 = document.getElementById("page4Button");
+			const button5 = document.getElementById("page5Button");
 
 			// 改变按钮颜色
 			page1Button.style.backgroundColor = "#555";
 			page2Button.style.backgroundColor = "#555";
 			page3Button.style.backgroundColor = "#00651e";
+			page4Button.style.backgroundColor = "#555";
+			page5Button.style.backgroundColor = "#555";
+		}
+		function changeButtonColor4() {
+			// 获取按钮元素
+			const button1 = document.getElementById("page1Button");
+			const button2 = document.getElementById("page2Button");
+			const button3 = document.getElementById("page3Button");
+			const button4 = document.getElementById("page4Button");
+			const button5 = document.getElementById("page5Button");
+
+			// 改变按钮颜色
+			page1Button.style.backgroundColor = "#555";
+			page2Button.style.backgroundColor = "#555";
+			page3Button.style.backgroundColor = "#555";
+			page4Button.style.backgroundColor = "#00651e";
+			page5Button.style.backgroundColor = "#555";
+		}
+		function changeButtonColor5() {
+			// 获取按钮元素
+			const button1 = document.getElementById("page1Button");
+			const button2 = document.getElementById("page2Button");
+			const button3 = document.getElementById("page3Button");
+			const button4 = document.getElementById("page4Button");
+			const button5 = document.getElementById("page5Button");
+
+			// 改变按钮颜色
+			page1Button.style.backgroundColor = "#555";
+			page2Button.style.backgroundColor = "#555";
+			page3Button.style.backgroundColor = "#555";
+			page4Button.style.backgroundColor = "#555";
+			page5Button.style.backgroundColor = "#00651e";
 		}
 	</script>
 
@@ -895,11 +1095,227 @@
 			for (let order of orderArr) {
 				let compare = 0;
 				for (let orderDetail of order.orderlists) {
-					if (order.ordType == 0 && compare != order.orderID) {
+					var splitDateTime = orderDetail.orderListTime.split(" ");
+					var datePart = splitDateTime[0]; // 获取日期部分
+					var timePart = splitDateTime[1]; // 获取时间部分;
+					if (order.ordType != 3 && compare != order.orderID) {
+						if(order.ordType != 2){
 						listTb.innerHTML += `
+						<tr class="table_row1 toggleButton${order.orderID}">
+							<td class="column-2 toggleButton${order.orderID}" style="text-align: center; padding: 0.1%;">${order.publisher.pubName}</td>
+							<td class="column-2 toggleButton${order.orderID}" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actName}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.ordTotal}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.discount}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.discountPrice}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.actQuantity}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${datePart}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;"><button type="button" onclick="remove(${order.orderID})" class="btn btn-dark show-form-button">取消</button></td>
+							<td class="column-7" style="text-align: center; padding: 0.1%;">
+								<button type="button" onclick="location = 'myTicketOrd.html?orderID=${order.orderID}'" class="btn btn-dark goticket toggleButton${order.orderID}">票券</button>
+							</td>
+						</tr>`;}
+						else{
+							listTb.innerHTML += `
+								<tr class="table_row1 toggleButton${order.orderID}">
+									<td class="column-2 toggleButton${order.orderID}" style="text-align: center; padding: 0.1%;">${order.publisher.pubName}</td>
+									<td class="column-2 toggleButton${order.orderID}" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
+									<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actName}</td>
+									<td class="column-2" style="text-align: center; padding: 0.1%;">${order.ordTotal}</td>
+									<td class="column-2" style="text-align: center; padding: 0.1%;">${order.discount}</td>
+									<td class="column-2" style="text-align: center; padding: 0.1%;">${order.discountPrice}</td>
+									<td class="column-2" style="text-align: center; padding: 0.1%;">${order.actQuantity}</td>
+									<td class="column-2" style="text-align: center; padding: 0.1%;">${datePart}</td>
+									<td class="column-2" style="text-align: center; padding: 0.1%;">已取消</td>
+									<td class="column-7" style="text-align: center; padding: 0.1%;">
+										<button type="button" onclick="location = 'myTicketOrd.html?orderID=${order.orderID}'" class="btn btn-dark goticket toggleButton${order.orderID}">票券</button>
+									</td>
+								</tr>`;}
+						listTb.innerHTML += `
+						<tr class="hiddenContent content${order.orderID} table_head">
+							<th class="column-2" style="text-align: center; padding: 0.1%;">明細</td>
+							<th class="column-2" style="text-align: center; padding: 0.1%;">訂單編號</td>
+							<th class="column-2" style="text-align: center; padding: 0.1%;">明細編號</td>
+							<th class="column-2" style="text-align: center; padding: 0.1%;">活動價格</td>
+							<th class="column-2" style="text-align: center; padding: 0.1%;">使用優惠</td>
+							<th class="column-2" style="text-align: center; padding: 0.1%;">座位</td>
+							<th class="column-2" style="text-align: center; padding: 0.1%;">座號</td>
+	
+							<th class="column-2" style="text-align: center; padding: 0.1%;">狀態</td>
+							<th class="column-7" style="text-align: center; ">評論</td>
+							<th class="column-7" style="text-align: center; padding: 0.1%;">單張票</td>
+						</tr>
+					`;}
+					compare = order.orderID;
+					var items = orderDetail.seatRowsColumns.split(',');
+					var fItem = items[0].trim();
+					var sItem = items[1].trim();
+					if (order.ordType != 3) {
+						if (order.ordType == 0) {
+							if(orderDetail.usedType == 0){
+							listTb.innerHTML += `
+							<tr class="hiddenContent content${order.orderID}">
+								<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
+								<img class="targetImage1" alt="IMG" src="${bytesToUrl(orderDetail.act.actPics[0].actPic)}">
+								</div></td>
+
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actPrice}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${fItem}<br>${sItem}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">0-0</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">未使用</td>
+								<td class="column-7" style="text-align: center; ">無法評論</td>
+								<td class="column-7" style="text-align: center; padding: 0.1%;">
+								<button type="button" onclick="location = 'myTicketSin.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">票券</button>
+								</td>
+							</tr>
+						`;
+							}else{
+								listTb.innerHTML += `
+									<tr class="hiddenContent content${order.orderID}">
+										<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
+										<img class="targetImage1" alt="IMG" src="${bytesToUrl(orderDetail.act.actPics[0].actPic)}">
+										</div></td>
+
+										<td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
+										<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
+										<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actPrice}</td>
+										<td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
+										<td class="column-2" style="text-align: center; padding: 0.1%;">${fItem}<br>${sItem}</td>
+										<td class="column-2" style="text-align: center; padding: 0.1%;">0-1</td>
+										<td class="column-2" style="text-align: center; padding: 0.1%;">已使用</td>
+										<td class="column-7" style="text-align: center; ">
+										<button type="button" onclick="location = 'actCom.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">評論</button></td>
+										<td class="column-7" style="text-align: center; padding: 0.1%;">
+										<button type="button" onclick="location = 'myTicketSin.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">票券</button>
+										</td>
+									</tr>
+								`;
+							}
+						}
+
+						else if (order.ordType == 1) {
+							if(orderDetail.usedType == 0){
+							listTb.innerHTML += `
+							<tr class="hiddenContent content${order.orderID}">
+								<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
+								<img class="targetImage1" alt="IMG" src="${bytesToUrl(orderDetail.act.actPics[0].actPic)}">
+								</div></td>
+
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actPrice}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${fItem}<br>${sItem}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">1-0</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">未使用</td>
+								<td class="column-7" style="text-align: center; ">無法評論
+								</td>
+								<td class="column-7" style="text-align: center; padding: 0.1%;">
+								<button type="button" onclick="location = 'myTicketSin.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">票券</button>
+								</td>
+							</tr>
+							`;
+							}else{
+							listTb.innerHTML += `
+								<tr class="hiddenContent content${order.orderID}">
+									<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
+									<img class="targetImage1" alt="IMG" src="${bytesToUrl(orderDetail.act.actPics[0].actPic)}">
+									</div></td>
+
+									<td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
+									<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
+									<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actPrice}</td>
+									<td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
+									<td class="column-2" style="text-align: center; padding: 0.1%;">${fItem}<br>${sItem}</td>
+									<td class="column-2" style="text-align: center; padding: 0.1%;">1-1</td>
+									<td class="column-2" style="text-align: center; padding: 0.1%;">已使用</td>
+									<td class="column-7" style="text-align: center; ">
+										<button type="button" onclick="location = 'actCom.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">評論</button></td>
+									<td class="column-7" style="text-align: center; padding: 0.1%;">
+									<button type="button" onclick="location = 'myTicketSin.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">票券</button>
+									</td>
+								</tr>
+							`;
+							}
+						}
+
+						else if (order.ordType == 2) {
+								if (orderDetail.usedType == 0){
+								listTb.innerHTML += `
+							<tr class="hiddenContent content${order.orderID}">
+								<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
+								<img class="targetImage1" alt="IMG" src="${bytesToUrl(orderDetail.act.actPics[0].actPic)}">
+								</div></td>
+
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actPrice}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${fItem}<br>${sItem}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">2-0</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">已取消</td>
+								<td class="column-7" style="text-align: center; ">無法評論</td>
+								<td class="column-7" style="text-align: center; padding: 0.1%;">
+								<button type="button" onclick="location = 'myTicketSin.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">票券</button>
+								</td>
+							</tr>
+							`;
+							}else{
+								listTb.innerHTML += `
+									<tr class="hiddenContent content${order.orderID}">
+										<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
+										<img class="targetImage1" alt="IMG" src="${bytesToUrl(orderDetail.act.actPics[0].actPic)}">
+										</div></td>
+
+										<td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
+										<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
+										<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actPrice}</td>
+										<td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
+										<td class="column-2" style="text-align: center; padding: 0.1%;">${fItem}<br>${sItem}</td>
+										<td class="column-2" style="text-align: center; padding: 0.1%;">2-1</td>
+										<td class="column-2" style="text-align: center; padding: 0.1%;">已使用</td>
+										<td class="column-7" style="text-align: center; ">
+										<button type="button" onclick="location = 'actCom.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">評論</button></td>
+										<td class="column-7" style="text-align: center; padding: 0.1%;">
+										<button type="button" onclick="location = 'myTicketSin.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">票券</button>
+										</td>
+									</tr>
+									`;
+									}
+						}
+					}
+
+				}
+			}
+		});
+
+	function bytesToUrl(bytes) {
+		const int8Array = new Int8Array(bytes);
+		const blob = new Blob([int8Array]);
+		return URL.createObjectURL(blob);
+	}
+</script>
+<!-- 歷史訂單明細1 -->
+<script>
+	const listTb2 = document.querySelector('#listTb2');
+	fetch('orders')
+		.then(resp => resp.json())
+		.then(orderArr => {
+			orderArr.reverse();
+			for (let order of orderArr) {
+				let compare = 0;
+				for (let orderDetail of order.orderlists) {
+					var splitDateTime = orderDetail.orderListTime.split(" ");
+					var datePart = splitDateTime[0]; // 获取日期部分
+					var timePart = splitDateTime[1]; // 获取时间部分;
+					if (order.ordType == 0 && compare != order.orderID) {
+						listTb2.innerHTML += `
 						<tr class="table_row1 toggleButton${order.orderID}" >
 
-							<td class="column-2 toggleButton${order.orderID}" style="text-align: center; padding: 0.1%;">${order.pubID}</td>
+							<td class="column-2 toggleButton${order.orderID}" style="text-align: center; padding: 0.1%;">${order.publisher.pubName}</td>
 
 							<td class="column-2 toggleButton${order.orderID}" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actName}</td>
@@ -907,7 +1323,7 @@
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.discount}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.discountPrice}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.actQuantity}</td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListTime}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${datePart}</td>
 
 							<td class="column-2" style="text-align: center; padding: 0.1%;"><button type="button" onclick="remove(${order.orderID})" class="btn btn-dark show-form-button">取消</button></td>
 							<td class="column-7" style="text-align: center; padding: 0.1%;">
@@ -925,81 +1341,61 @@
 							<th class="column-2" style="text-align: center; padding: 0.1%;">座號</td>
 	
 							<th class="column-2" style="text-align: center; padding: 0.1%;">狀態</td>
-							<th class="column-7" style="text-align: center; ">取消/評論</td>
+							<th class="column-7" style="text-align: center; ">評論</td>
 							<th class="column-7" style="text-align: center; padding: 0.1%;">單張票</td>
 						</tr>
 					`;
 					}
 					compare = order.orderID;
+					var items = orderDetail.seatRowsColumns.split(',');
+					var fItem = items[0].trim();
+					var sItem = items[1].trim();
 					if (order.ordType == 0) {
-						if (orderDetail.usedType == 0){
-							listTb.innerHTML += `
-						<tr class="hiddenContent content${order.orderID}">
-							<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
-							<img class="targetImage1" alt="IMG" src="${bytesToUrl(orderDetail.act.actPics[0].actPic)}">
-							</div></td>
+						if (order.ordType == 0) {
+						    if (orderDetail.usedType == 0){
+						    listTb2.innerHTML += `
+						        <tr class="hiddenContent content${order.orderID}">
+						            <td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
+						            <img class="targetImage1" alt="IMG" src="${bytesToUrl(orderDetail.act.actPics[0].actPic)}">
+						            </div></td>
 
-							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actPrice}</td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.seatRowsColumns}</td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">seatNumber</td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">未使用</td>
-							<td class="column-7" style="text-align: center; ">
-								<button type="button" class="btn btn-dark show-form-button">取消</button>
-							</td>
-							<td class="column-7" style="text-align: center; padding: 0.1%;">
-							<button type="button" onclick="location = 'myTicketSin.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">票券</button>
-							</td>
-						</tr>
-					`;
-						}
-
-						if (orderDetail.usedType == 1) {
-							listTb.innerHTML += `
-							<tr class="hiddenContent content${order.orderID}">
-								<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
-								<img class="targetImage1" alt="IMG" src="${bytesToUrl(orderDetail.act.actPics[0].actPic)}">
-								</div></td>
-
-								<td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
-								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
-								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actPrice}</td>
-								<td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
-								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.seatRowsColumns}</td>
-								<td class="column-2" style="text-align: center; padding: 0.1%;">seatNumber</td>
-								<td class="column-2" style="text-align: center; padding: 0.1%;">已使用</td>
-								<td class="column-7" style="text-align: center; ">
-									<button type="button" class="btn btn-dark goticket">評論</button></td>
-								<td class="column-7" style="text-align: center; padding: 0.1%;">
-								<button type="button" onclick="location = 'myTicketSin.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">票券</button>
-								</td>
-							</tr>
+						            <td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
+						            <td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
+						            <td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actPrice}</td>
+						            <td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
+						            <td class="column-2" style="text-align: center; padding: 0.1%;">${fItem}<br>${sItem}</td>
+						            <td class="column-2" style="text-align: center; padding: 0.1%;">0-0</td>
+						            <td class="column-2" style="text-align: center; padding: 0.1%;">未使用</td>
+						            <td class="column-7" style="text-align: center; ">無法評論</td>
+						            <td class="column-7" style="text-align: center; padding: 0.1%;">
+						            <button type="button" onclick="location = 'myTicketSin.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">票券</button>
+						            </td>
+						        </tr>
 						`;
+						}else{
+						    listTb2.innerHTML += `
+						        <tr class="hiddenContent content${order.orderID}">
+						            <td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
+						            <img class="targetImage1" alt="IMG" src="${bytesToUrl(orderDetail.act.actPics[0].actPic)}">
+						            </div></td>
+
+						            <td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
+						            <td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
+						            <td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actPrice}</td>
+						            <td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
+						            <td class="column-2" style="text-align: center; padding: 0.1%;">${fItem}<br>${sItem}</td>
+						            <td class="column-2" style="text-align: center; padding: 0.1%;">0-1</td>
+						            <td class="column-2" style="text-align: center; padding: 0.1%;">已使用</td>
+						            <td class="column-7" style="text-align: center; ">
+						            <button type="button" onclick="location = 'actCom.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">評論</button></td>
+						            <td class="column-7" onclick="location = 'actCom.html?orderListID=${orderDetail.orderListID}'" style="text-align: center; padding: 0.1%;">
+						            <button type="button" onclick="location = 'myTicketSin.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">票券</button>
+						            </td>
+						        </tr>
+						        `;
+						        }
 						}
 
-						if (orderDetail.usedType == 2) {
-							listTb.innerHTML += `
-							<tr class="hiddenContent content${order.orderID}">
-								<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
-								<img class="targetImage1" alt="IMG" src="${bytesToUrl(orderDetail.act.actPics[0].actPic)}">
-								</div></td>
-
-								<td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
-								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
-								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actPrice}</td>
-								<td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
-								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.seatRowsColumns}</td>
-								<td class="column-2" style="text-align: center; padding: 0.1%;">seatNumber</td>
-								<td class="column-2" style="text-align: center; padding: 0.1%;">已取消</td>
-								<td class="column-7" style="text-align: center; ">已取消</td>
-								<td class="column-7" style="text-align: center; padding: 0.1%;">
-								<button type="button" onclick="location = 'myTicketSin.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">票券</button>
-								</td>
-							</tr>
-						`;
-						}
 					}
 
 				}
@@ -1012,86 +1408,239 @@
 		return URL.createObjectURL(blob);
 	}
 </script>
-<!-- 歷史訂單明細1 -->
-<script>
-	const listTb1 = document.querySelector('#listTb1');
-	fetch('orders')
-		.then(resp => resp.json())
-		.then(orderArr => {
-			orderArr.reverse();
-			for (let order of orderArr) {
-				for (let orderDetail of order.orderlists) {
-					if (orderDetail.usedType == 1) {
-
-						listTb1.innerHTML += `
-						<tr class="table_row1">
-							<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
-							<img class="targetImage1" alt="IMG" src="${bytesToUrl(orderDetail.act.actPics[0].actPic)}">
-							</div></td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actName}</td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.discountPrice}</td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.actQuantity}</td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListTime}</td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">已使用</td>
-							<td class="column-7" style="text-align: center; padding: 0.1%;">
-								<button type="button" onclick="location = 'actCom.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">評論</button>
-							</td>
-
-						</tr>
-					`;
-					}number = -1;
-				}
-			}
-		});
-</script>
 <!-- 歷史訂單明細2 -->
 <script>
-	const listTb2 = document.querySelector('#listTb1');
+	const listTb3 = document.querySelector('#listTb3');
 	fetch('orders')
 		.then(resp => resp.json())
 		.then(orderArr => {
 			orderArr.reverse();
 			for (let order of orderArr) {
+				let compare = 0;
 				for (let orderDetail of order.orderlists) {
-					if (orderDetail.usedType == 2) {
+					var splitDateTime = orderDetail.orderListTime.split(" ");
+					var datePart = splitDateTime[0]; // 获取日期部分
+					var timePart = splitDateTime[1]; // 获取时间部分;
+					if (order.ordType == 1 && compare != order.orderID) {
+						listTb3.innerHTML += `
+						<tr class="table_row1 toggleButton${order.orderID}" >
 
-						listTb2.innerHTML += `
-						<tr class="table_row1">
-							<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
-							<img class="targetImage1" alt="IMG" src="${bytesToUrl(orderDetail.act.actPics[0].actPic)}">
-							</div></td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
+							<td class="column-2 toggleButton${order.orderID}" style="text-align: center; padding: 0.1%;">${order.publisher.pubName}</td>
+
+							<td class="column-2 toggleButton${order.orderID}" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actName}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.ordTotal}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.discount}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.discountPrice}</td>
 							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.actQuantity}</td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListTime}</td>
-							<td class="column-2" style="text-align: center; padding: 0.1%;">退貨</td>
-							<td class="column-7" style="text-align: center; padding: 0.1%;">
-								無法評論
-							</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${datePart}</td>
 
+							<td class="column-2" style="text-align: center; padding: 0.1%;"><button type="button" onclick="remove(${order.orderID})" class="btn btn-dark show-form-button">取消</button></td>
+							<td class="column-7" style="text-align: center; padding: 0.1%;">
+								<button type="button" onclick="location = 'myTicketOrd.html?orderID=${order.orderID}'" class="btn btn-dark goticket toggleButton${order.orderID}">票券</button>
+							</td>
+						</tr>
+						
+						<tr class="hiddenContent content${order.orderID} table_head">
+							<th class="column-2" style="text-align: center; padding: 0.1%;">明細</td>
+							<th class="column-2" style="text-align: center; padding: 0.1%;">訂單編號</td>
+							<th class="column-2" style="text-align: center; padding: 0.1%;">明細編號</td>
+							<th class="column-2" style="text-align: center; padding: 0.1%;">活動價格</td>
+							<th class="column-2" style="text-align: center; padding: 0.1%;">使用優惠</td>
+							<th class="column-2" style="text-align: center; padding: 0.1%;">座位</td>
+							<th class="column-2" style="text-align: center; padding: 0.1%;">座號</td>
+	
+							<th class="column-2" style="text-align: center; padding: 0.1%;">狀態</td>
+							<th class="column-7" style="text-align: center; ">評論</td>
+							<th class="column-7" style="text-align: center; padding: 0.1%;">單張票</td>
 						</tr>
 					`;
+					}
+					compare = order.orderID;
+					var items = orderDetail.seatRowsColumns.split(',');
+					var fItem = items[0].trim();
+					var sItem = items[1].trim();
+					if (order.ordType != 3) {
+						if (order.ordType == 1) {
+
+						  if (order.ordType == 1) {
+							if(orderDetail.usedType == 0){
+							listTb3.innerHTML += `
+							<tr class="hiddenContent content${order.orderID}">
+								<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
+								<img class="targetImage1" alt="IMG" src="${bytesToUrl(orderDetail.act.actPics[0].actPic)}">
+								</div></td>
+
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actPrice}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">${fItem}<br>${sItem}</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">1-0</td>
+								<td class="column-2" style="text-align: center; padding: 0.1%;">未使用</td>
+								<td class="column-7" style="text-align: center; ">無法評論
+								</td>
+								<td class="column-7" style="text-align: center; padding: 0.1%;">
+								<button type="button" onclick="location = 'myTicketSin.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">票券</button>
+								</td>
+							</tr>
+							`;
+							}else{
+							listTb3.innerHTML += `
+								<tr class="hiddenContent content${order.orderID}">
+									<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
+									<img class="targetImage1" alt="IMG" src="${bytesToUrl(orderDetail.act.actPics[0].actPic)}">
+									</div></td>
+
+									<td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
+									<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
+									<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actPrice}</td>
+									<td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
+									<td class="column-2" style="text-align: center; padding: 0.1%;">${fItem}<br>${sItem}</td>
+									<td class="column-2" style="text-align: center; padding: 0.1%;">1-1</td>
+									<td class="column-2" style="text-align: center; padding: 0.1%;">已使用</td>
+									<td class="column-7" style="text-align: center; ">
+										<button type="button" onclick="location = 'actCom.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">評論</button></td>
+									<td class="column-7" style="text-align: center; padding: 0.1%;">
+									<button type="button" onclick="location = 'myTicketSin.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">票券</button>
+									</td>
+								</tr>
+							`;
+							}
+						}
 					}
 
 				}
 			}
-		});
+		}});
+
+	function bytesToUrl(bytes) {
+		const int8Array = new Int8Array(bytes);
+		const blob = new Blob([int8Array]);
+		return URL.createObjectURL(blob);
+	}
+</script>
+<!-- 歷史訂單明細2 -->
+<script>
+	const listTb4 = document.querySelector('#listTb4');
+	fetch('orders')
+		.then(resp => resp.json())
+		.then(orderArr => {
+			orderArr.reverse();
+			for (let order of orderArr) {
+				let compare = 0;
+				for (let orderDetail of order.orderlists) {
+					var splitDateTime = orderDetail.orderListTime.split(" ");
+					var datePart = splitDateTime[0]; // 获取日期部分
+					var timePart = splitDateTime[1]; // 获取时间部分;
+					if (order.ordType == 2 && compare != order.orderID) {
+						listTb4.innerHTML += `
+						<tr class="table_row1 toggleButton${order.orderID}" >
+
+							<td class="column-2 toggleButton${order.orderID}" style="text-align: center; padding: 0.1%;">${order.publisher.pubName}</td>
+
+							<td class="column-2 toggleButton${order.orderID}" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actName}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.ordTotal}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.discount}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.discountPrice}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${order.actQuantity}</td>
+							<td class="column-2" style="text-align: center; padding: 0.1%;">${datePart}</td>
+
+							<td class="column-2" style="text-align: center; padding: 0.1%;">已取消</td>
+							<td class="column-7" style="text-align: center; padding: 0.1%;">
+								<button type="button" onclick="location = 'myTicketOrd.html?orderID=${order.orderID}'" class="btn btn-dark goticket toggleButton${order.orderID}">票券</button>
+							</td>
+						</tr>
+						
+						<tr class="hiddenContent content${order.orderID} table_head">
+							<th class="column-2" style="text-align: center; padding: 0.1%;">明細</td>
+							<th class="column-2" style="text-align: center; padding: 0.1%;">訂單編號</td>
+							<th class="column-2" style="text-align: center; padding: 0.1%;">明細編號</td>
+							<th class="column-2" style="text-align: center; padding: 0.1%;">活動價格</td>
+							<th class="column-2" style="text-align: center; padding: 0.1%;">使用優惠</td>
+							<th class="column-2" style="text-align: center; padding: 0.1%;">座位</td>
+							<th class="column-2" style="text-align: center; padding: 0.1%;">座號</td>
+	
+							<th class="column-2" style="text-align: center; padding: 0.1%;">狀態</td>
+							<th class="column-7" style="text-align: center; ">評論</td>
+							<th class="column-7" style="text-align: center; padding: 0.1%;">單張票</td>
+						</tr>
+					`;
+					}
+					compare = order.orderID;
+					var items = orderDetail.seatRowsColumns.split(',');
+					var fItem = items[0].trim();
+					var sItem = items[1].trim();
+
+					if (order.ordType == 2) {
+					    if(orderDetail.usedType == 0){
+					    listTb4.innerHTML += `
+					        <tr class="hiddenContent content${order.orderID}">
+					        <td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
+					        <img class="targetImage1" alt="IMG" src="${bytesToUrl(orderDetail.act.actPics[0].actPic)}">
+					        </div></td>
+
+					        <td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
+					        <td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
+					        <td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actPrice}</td>
+					        <td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
+					        <td class="column-2" style="text-align: center; padding: 0.1%;">${fItem}<br>${sItem}</td>
+					        <td class="column-2" style="text-align: center; padding: 0.1%;">2-0</td>
+					        <td class="column-2" style="text-align: center; padding: 0.1%;">已取消</td>
+					        <td class="column-7" style="text-align: center; ">無法評論
+					        </td>
+					        <td class="column-7" style="text-align: center; padding: 0.1%;">
+					        <button type="button" onclick="location = 'myTicketSin.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">票券</button>
+					        </td>
+					    </tr>
+					`;
+					    }else{
+					        listTb4.innerHTML += `
+					            <tr class="hiddenContent content${order.orderID}">
+					            <td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
+					            <img class="targetImage1" alt="IMG" src="${bytesToUrl(orderDetail.act.actPics[0].actPic)}">
+					            </div></td>
+
+					            <td class="column-2" style="text-align: center; padding: 0.1%;">${order.orderID}</td>
+					            <td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.orderListID}</td>
+					            <td class="column-2" style="text-align: center; padding: 0.1%;">${orderDetail.act.actPrice}</td>
+					            <td class="column-2" style="text-align: center; padding: 0.1%;">無</td>
+					            <td class="column-2" style="text-align: center; padding: 0.1%;">${fItem}<br>${sItem}</td>
+					            <td class="column-2" style="text-align: center; padding: 0.1%;">2-1</td>
+					            <td class="column-2" style="text-align: center; padding: 0.1%;">已使用</td>
+					            <td class="column-7" style="text-align: center; ">
+					            <button type="button" onclick="location = 'actCom.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">評論</button></td>
+					            <td class="column-7" style="text-align: center; padding: 0.1%;">
+					            <button type="button" onclick="location = 'myTicketSin.html?orderListID=${orderDetail.orderListID}'" class="btn btn-dark goticket">票券</button>
+					            </td>
+					        </tr>
+					        `;
+					    }
+					}
+					}
+
+				}
+			}
+		);
+
+	function bytesToUrl(bytes) {
+		const int8Array = new Int8Array(bytes);
+		const blob = new Blob([int8Array]);
+		return URL.createObjectURL(blob);
+	}
 </script>
 <!-- 留言 -->
 <script>
-	const listTb3 = document.querySelector('#listTb2');
+	const listTb5 = document.querySelector('#listTb5');
 	fetch('orders')
 		.then(resp => resp.json())
 		.then(orderArr => {
 			orderArr.reverse();
 			for (let order of orderArr) {
 				for (let orderDetail of order.orderlists) {
-					if (order.ordType == 2) {
-						listTb3.innerHTML += `
+					if (orderDetail.usedType == 1&&orderDetail.reviewContent != "") {
+						listTb5.innerHTML += `
 						<tr class="table_row1">
 							<td style="padding-left: 4px;" class="column-2" style="text-align: center; padding: 0.1%;"><div class="how-itemcart1">
 							<img class="targetImage1" alt="IMG" src="${bytesToUrl(orderDetail.act.actPics[0].actPic)}">

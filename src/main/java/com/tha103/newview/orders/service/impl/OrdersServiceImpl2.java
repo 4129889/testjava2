@@ -71,7 +71,8 @@ public class OrdersServiceImpl2 implements OrdersService2 {
 		
 	}
 	
-	public int cancelReview(Integer orderListID) {			
+	public int cancelReview(Integer orderListID) {
+		dao.deleteComPic(orderListID);
 		return dao.deleteReview(orderListID);
 		
 	}

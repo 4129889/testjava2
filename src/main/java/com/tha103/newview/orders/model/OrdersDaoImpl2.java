@@ -5,8 +5,11 @@ import java.util.List;
 import javax.persistence.Tuple;
 
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import com.tha103.util.HibernateUtil;
+
+import lombok.experimental.var;
 
 public class OrdersDaoImpl2 implements OrdersDao2 {
 	
@@ -147,5 +150,29 @@ public class OrdersDaoImpl2 implements OrdersDao2 {
 		var session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.merge(comPic);
 		return 1;
+	}
+	public static void main(String[] args) {
+		OrdersDaoImpl2 dao = new OrdersDaoImpl2();
+		var a = dao.deleteComPic(18);
+		System.err.println(a);
+	}
+	public int deleteComPic(Integer orderListID) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+		try {
+			session.beginTransaction();
+			    String hql = "DELETE FROM ComPic WHERE orderListID = :orderListID";
+			    Query<ComPic> query = session.createQuery(hql, ComPic.class);
+			    query.setParameter("orderListID", orderListID);
+			    int deletedRecords = query.executeUpdate();
+		        
+			
+			session.getTransaction().commit();
+			return deletedRecords;
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+		return -1;
 	}
 }

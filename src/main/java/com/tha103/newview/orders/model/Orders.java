@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -24,7 +25,9 @@ public class Orders implements Serializable {
 	private Timestamp ordTime;
 	private Integer ordType;
 	private Integer actQuantity;
-	private Integer pubID;
+	@ManyToOne
+	@JoinColumn(name = "pubID", insertable = false, updatable = false)
+	private Publisher publisher;
 	@OneToMany
 	@JoinColumn(name = "orderID", referencedColumnName = "orderID")
 	private List<Orderlist> orderlists;
@@ -33,7 +36,7 @@ public class Orders implements Serializable {
 	}
 
 	public Orders(Integer orderID, Integer userID, Integer ordTotal, Integer discount, Integer discountPrice,
-			Timestamp ordTime, Integer ordType, Integer actQuantity, Integer pubID, List<Orderlist> orderlists) {
+			Timestamp ordTime, Integer ordType, Integer actQuantity, Publisher publisher, List<Orderlist> orderlists) {
 		super();
 		this.orderID = orderID;
 		this.userID = userID;
@@ -43,7 +46,7 @@ public class Orders implements Serializable {
 		this.ordTime = ordTime;
 		this.ordType = ordType;
 		this.actQuantity = actQuantity;
-		this.pubID = pubID;
+		this.publisher = publisher;
 		this.orderlists = orderlists;
 	}
 
@@ -111,12 +114,12 @@ public class Orders implements Serializable {
 		this.actQuantity = actQuantity;
 	}
 
-	public Integer getPubID() {
-		return pubID;
+	public Publisher getPublisher() {
+		return publisher;
 	}
 
-	public void setPubID(Integer pubID) {
-		this.pubID = pubID;
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
 	}
 
 	public List<Orderlist> getOrderlists() {
@@ -130,6 +133,5 @@ public class Orders implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-	
+		
 }

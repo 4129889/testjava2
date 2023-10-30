@@ -699,8 +699,8 @@
 			})
 				.then(resp => resp.json())
 				.then(body => {
-					alert('文章已提交！將回到論壇首頁');
-					location = 'forum_home.html';
+					alert('完成評論！');
+					history.back();
 				});
 		});
 

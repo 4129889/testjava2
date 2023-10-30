@@ -21,4 +21,6 @@ public interface OrdersDao2 {
 	public int cancelOrdType(Integer orderID);
 	
 	public int deleteReview(Integer orderListID);
+	
+	public int deleteComPic(Integer orderListID);
 }
